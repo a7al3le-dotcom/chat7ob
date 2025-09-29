@@ -546,7 +546,163 @@
     .notification.warning {
       border-right-color: #f39c12;
     }
-    
+
+    /* منطقة المايكروفونات الجديدة */
+    .microphones-section {
+      background: #2c3e50;
+      padding: 10px;
+      border-bottom: 2px solid #5a2a2a;
+    }
+
+    .microphones-header {
+      color: white;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .microphones-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .microphone-item {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+
+    .microphone-item.active {
+      background: #e8f5e9;
+      box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+    }
+
+    .microphone-item.talking {
+      background: #e3f2fd;
+      box-shadow: 0 3px 10px rgba(33, 150, 243, 0.3);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 3px 10px rgba(33, 150, 243, 0.3); }
+      50% { box-shadow: 0 3px 15px rgba(33, 150, 243, 0.6); }
+      100% { box-shadow: 0 3px 10px rgba(33, 150, 243, 0.3); }
+    }
+
+    .microphone-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #5a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .microphone-name {
+      font-size: 12px;
+      font-weight: bold;
+      color: #5a2a2a;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .microphone-status {
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .microphone-controls {
+      display: flex;
+      gap: 5px;
+      width: 100%;
+    }
+
+    .microphone-btn {
+      flex: 1;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mic-on-btn {
+      background: #4caf50;
+      color: white;
+    }
+
+    .mic-off-btn {
+      background: #f44336;
+      color: white;
+    }
+
+    .volume-control {
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    .volume-slider {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      background: #ddd;
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #5a2a2a;
+      cursor: pointer;
+    }
+
+    .microphone-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .action-btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #5a2a2a;
+      color: white;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .action-btn:hover {
+      background: #7a3a3a;
+    }
+
+    .action-btn.request-mic {
+      background: #2196f3;
+    }
+
+    .action-btn.request-mic:hover {
+      background: #0b7dda;
+    }
+
     /* التكيف مع الجوال */
     @media (max-width: 480px) {
       body {
@@ -603,6 +759,24 @@
         padding: 10px 15px;
         font-size: 12px;
         margin-left: 5px;
+      }
+
+      .microphones-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .microphone-item {
+        padding: 8px;
+      }
+
+      .microphone-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+
+      .microphone-name {
+        font-size: 11px;
       }
     }
     
@@ -720,7 +894,19 @@
 
     <!-- شاشة الدردشة -->
     <section class="chat-room" id="chatRoom">
-      <!-- تم إخفاء الهيدر هنا -->
+      <!-- منطقة المايكروفونات الجديدة -->
+      <div class="microphones-section" id="microphonesSection">
+        <div class="microphones-header">
+          <span>مايكروفونات الجودة العالية</span>
+        </div>
+        <div class="microphones-grid" id="microphonesGrid">
+          <!-- سيتم ملء المايكروفونات ديناميكياً -->
+        </div>
+        <div class="microphone-actions">
+          <button class="action-btn request-mic" onclick="requestMicrophone()">طلب مايك</button>
+          <button class="action-btn" onclick="showMicSettings()">إعدادات الصوت</button>
+        </div>
+      </div>
       
       <div class="chat-messages" id="chatMessages">
         <!-- الرسائل تظهر هنا -->
@@ -769,6 +955,8 @@
     let currentUser = null;
     let connectedUsers = [];
     let messages = [];
+    let microphones = [];
+    let userMicrophone = null;
 
     // دوال التبويبات
     function switchTab(tabNumber) {
@@ -834,6 +1022,125 @@
       showNotification(`مرحباً ${username}! تم الدخول بنجاح`, 'success');
       addSystemMessage(`انضم ${username} إلى الدردشة`);
       updateUsersList();
+      initializeMicrophones();
+    }
+
+    // تهيئة المايكروفونات
+    function initializeMicrophones() {
+      // إنشاء 5 مايكروفونات افتراضية
+      microphones = [
+        { id: 1, userId: null, userName: 'مايك 1', status: 'available', volume: 80, isActive: false },
+        { id: 2, userId: null, userName: 'مايك 2', status: 'available', volume: 80, isActive: false },
+        { id: 3, userId: null, userName: 'مايك 3', status: 'available', volume: 80, isActive: false },
+        { id: 4, userId: null, userName: 'مايك 4', status: 'available', volume: 80, isActive: false },
+        { id: 5, userId: null, userName: 'مايك 5', status: 'available', volume: 80, isActive: false }
+      ];
+      
+      updateMicrophonesDisplay();
+    }
+
+    // تحديث عرض المايكروفونات
+    function updateMicrophonesDisplay() {
+      const microphonesGrid = document.getElementById('microphonesGrid');
+      microphonesGrid.innerHTML = '';
+      
+      microphones.forEach(mic => {
+        const micElement = document.createElement('div');
+        micElement.className = 'microphone-item';
+        if (mic.userId === currentUser.id) {
+          micElement.classList.add('active');
+        }
+        if (mic.isActive && mic.userId) {
+          micElement.classList.add('talking');
+        }
+        
+        micElement.innerHTML = `
+          <div class="microphone-avatar">${mic.userName ? mic.userName.charAt(0) : '?'}</div>
+          <div class="microphone-name">${mic.userName || 'متاح'}</div>
+          <div class="microphone-status">${mic.status === 'available' ? 'متاح' : 'مشغول'}</div>
+          <div class="microphone-controls">
+            ${mic.userId === currentUser.id ? 
+              `<button class="microphone-btn mic-off-btn" onclick="releaseMicrophone(${mic.id})">إغلاق</button>` : 
+              `<button class="microphone-btn mic-on-btn" onclick="takeMicrophone(${mic.id})" ${mic.status !== 'available' ? 'disabled' : ''}>أخذ</button>`
+            }
+          </div>
+          ${mic.userId ? `
+            <div class="volume-control">
+              <input type="range" min="0" max="100" value="${mic.volume}" class="volume-slider" onchange="updateMicrophoneVolume(${mic.id}, this.value)">
+            </div>
+          ` : ''}
+        `;
+        
+        microphonesGrid.appendChild(micElement);
+      });
+    }
+
+    // أخذ مايكروفون
+    function takeMicrophone(micId) {
+      const microphone = microphones.find(m => m.id === micId);
+      if (microphone && microphone.status === 'available') {
+        microphone.userId = currentUser.id;
+        microphone.userName = currentUser.name;
+        microphone.status = 'occupied';
+        userMicrophone = microphone;
+        
+        updateMicrophonesDisplay();
+        showNotification(`تم أخذ المايكروفون ${micId} بنجاح`, 'success');
+        addSystemMessage(`${currentUser.name} أخذ المايكروفون ${micId}`);
+        
+        // محاكاة بدء التحدث بعد أخذ المايك
+        setTimeout(() => {
+          if (userMicrophone && userMicrophone.id === micId) {
+            userMicrophone.isActive = true;
+            updateMicrophonesDisplay();
+            addSystemMessage(`${currentUser.name} بدأ التحدث`);
+          }
+        }, 1000);
+      } else {
+        showNotification('هذا المايكروفون غير متاح', 'error');
+      }
+    }
+
+    // تحرير مايكروفون
+    function releaseMicrophone(micId) {
+      const microphone = microphones.find(m => m.id === micId);
+      if (microphone && microphone.userId === currentUser.id) {
+        const userName = microphone.userName;
+        microphone.userId = null;
+        microphone.userName = null;
+        microphone.status = 'available';
+        microphone.isActive = false;
+        userMicrophone = null;
+        
+        updateMicrophonesDisplay();
+        showNotification(`تم تحرير المايكروفون ${micId}`, 'success');
+        addSystemMessage(`${userName} حرر المايكروفون ${micId}`);
+      }
+    }
+
+    // تحديث مستوى صوت المايكروفون
+    function updateMicrophoneVolume(micId, volume) {
+      const microphone = microphones.find(m => m.id === micId);
+      if (microphone) {
+        microphone.volume = volume;
+        showNotification(`تم ضبط مستوى الصوت إلى ${volume}%`, 'info');
+      }
+    }
+
+    // طلب مايكروفون
+    function requestMicrophone() {
+      const availableMic = microphones.find(m => m.status === 'available');
+      if (availableMic) {
+        takeMicrophone(availableMic.id);
+      } else {
+        showNotification('لا توجد مايكروفونات متاحة حالياً', 'warning');
+      }
+    }
+
+    // إعدادات الصوت
+    function showMicSettings() {
+      showNotification('فتح إعدادات الصوت المتقدمة', 'info');
+      // يمكن إضافة منطق لإعدادات الصوت هنا
     }
 
     // عرض شاشة الدردشة
@@ -875,6 +1182,12 @@
         if (currentUser) {
           addSystemMessage(`غادر ${currentUser.name} الدردشة`);
           connectedUsers = connectedUsers.filter(user => user.id !== currentUser.id);
+          
+          // تحرير أي مايكروفون مأخوذ من قبل المستخدم
+          if (userMicrophone) {
+            releaseMicrophone(userMicrophone.id);
+          }
+          
           currentUser = null;
         }
         
