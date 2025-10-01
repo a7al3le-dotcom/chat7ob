@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" hreflang="ar-sa" style="height: 100%;">
+<html lang="ar" dir="rtl" style="height: 100%;">
 <head>   
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta charset="UTF-8">
@@ -11,8 +11,8 @@
   
   <title>شات جوال هوست | شات الجوال | دردشة جوال هوست | شات للجوال | استضافة شات</title>
   
-  <meta name="description" content="شات جوال هوست للجوال,دردشة,شات الجوال,دردشة جوال هوست,دردشة الجوال,شات الجوال للجوال,استضافه جوال هوست الكتابي,شات هوست،شات فون هوست,استضافة شات,فتح شات,هوست شات,استضافة جوال,استضافة فون هوست للجوال,استضافة دردشة فون هوست,شات الرياض الصوتي للجوال,استضافة شات,فتح شات,شات جوال الخليج,شات موبايل هوست.دردشة موبايل هوست .شات جوال جوال للجوال , دردشة شات للجوال الكتابية الصوتية للجوال,شات جوال للجوال,دردشة الرياض للجوال الكتابي,شات جوال الرياض الصوتي,دردشة الرياض الصوتي للجوال,شات الرياض الصوتي,دردشة الرياض الصوتية,شات الرياض,دردشة الرياض,شات الرياض.للجوال,شات.دردشة.الرياض.الصوتي,شات دردشة الرياض الكتابي الصوتي للجوال,شات عشق,دردشة,عشق,شات عشق الخليج,شات الرياض,دردشة كتابي,شات الجوال,شات الرياض, شات طيفك للجوال,تايجر هوست,دردشة طيفك,شات طيفك الصوتي">
-  
+  <meta name="description" content="شات جوال هوست للجوال، دردشة، شات الجوال، دردشة جوال هوست، دردشة الجوال، شات الجوال للجوال، استضافة جوال هوست الكتابي، شات هوست، شات فون هوست، استضافة شات، فتح شات، هوست شات، استضافة جوال، استضافة فون هوست للجوال، استضافة دردشة فون هوست، شات الرياض الصوتي للجوال، استضافة شات، فتح شات، شات جوال الخليج، شات موبايل هوست، دردشة موبايل هوست، شات جوال جوال للجوال، دردشة شات للجوال الكتابية الصوتية للجوال، شات جوال للجوال، دردشة الرياض للجوال الكتابي، شات جوال الرياض الصوتي، دردشة الرياض الصوتي للجوال، شات الرياض الصوتي، دردشة الرياض الصوتية، شات الرياض، دردشة الرياض، شات.دردشة.الرياض.الصوتي، شات دردشة الرياض الكتابي الصوتي للجوال، شات عشق، دردشة، عشق، شات عشق الخليج، شات الرياض، دردشة كتابي، شات الجوال، شات الرياض، شات طيفك للجوال، تايجر هوست، دردشة طيفك، شات طيفك الصوتي">
+
   <style>
     /* الأساسيات */
     * {
@@ -194,7 +194,7 @@
       padding: 10px;
       background-color: #f9f9f9;
     }
-    
+
     /* تصميم جديد للرسائل */
     .message {
       margin-bottom: 15px;
@@ -287,6 +287,7 @@
     .message-text {
       font-size: 14px;
       line-height: 1.4;
+      word-wrap: break-word;
     }
     
     .delete-message-btn {
@@ -309,8 +310,8 @@
     .message-content:hover .delete-message-btn {
       display: flex;
     }
-    
-    /* منطقة المايكروفونات */
+
+    /* لوحة المايكروفونات المحسنة */
     .microphones-panel {
       background: #f8f9fa;
       border-bottom: 1px solid #dee2e6;
@@ -339,6 +340,17 @@
       font-size: 12px;
       cursor: pointer;
     }
+
+    .mic-settings-btn {
+      background: #2F5C73;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
     
     .microphones-grid {
       display: grid;
@@ -365,7 +377,35 @@
       border-color: #6c757d;
       background: #f8f9fa;
     }
+
+    .microphone-slot.priority {
+      border-color: #ffc107;
+      background: #fffbf0;
+    }
     
+    /* تحسينات للمايكروفونات */
+    .microphone-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .mic-number {
+      font-weight: bold;
+      font-size: 12px;
+      color: #2F5C73;
+    }
+
+    .priority-badge {
+      background: #ffc107;
+      color: black;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
     .microphone-user {
       font-size: 10px;
       font-weight: bold;
@@ -374,11 +414,18 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .mic-time {
+      font-size: 9px;
+      color: #666;
+      margin: 3px 0;
+    }
     
     .microphone-controls {
       display: flex;
       justify-content: center;
       gap: 3px;
+      margin: 5px 0;
     }
     
     .mic-btn {
@@ -397,10 +444,18 @@
       background: #28a745;
       color: white;
     }
+
+    .mic-toggle.active {
+      background: #dc3545;
+    }
     
     .mic-mute {
       background: #ffc107;
       color: black;
+    }
+
+    .mic-mute.muted {
+      background: #6c757d;
     }
     
     .mic-kick {
@@ -408,9 +463,71 @@
       color: white;
       display: none;
     }
+
+    .mic-leave {
+      background: #6c757d !important;
+      color: white;
+    }
+
+    .mic-priority {
+      background: #ffc107 !important;
+      color: black !important;
+    }
+
+    .mic-join {
+      background: #28a745 !important;
+      color: white;
+    }
     
     .microphone-slot:hover .mic-kick {
       display: flex;
+    }
+
+    .mic-advanced-controls {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #eee;
+      display: none;
+    }
+
+    .microphone-slot.active .mic-advanced-controls {
+      display: block;
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 5px;
+    }
+
+    .volume-control label {
+      font-size: 9px;
+      color: #666;
+    }
+
+    .volume-control input {
+      flex: 1;
+      height: 3px;
+    }
+
+    .mic-settings {
+      display: flex;
+      gap: 5px;
+    }
+
+    .setting-btn {
+      background: #f8f9fa;
+      border: 1px solid #ddd;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 8px;
+      cursor: pointer;
+    }
+
+    .setting-btn.active {
+      background: #2F5C73;
+      color: white;
     }
     
     .mic-status {
@@ -555,6 +672,61 @@
     
     .emoji:hover {
       background: #f0f0f0;
+    }
+
+    /* المودال */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 400px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #2F5C73;
+    }
+
+    .close-modal {
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .setting-item {
+      margin-bottom: 15px;
+    }
+
+    .setting-item label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
     }
     
     /* لوحة التحكم */
@@ -790,6 +962,27 @@
       border: 1px solid #dee2e6;
     }
     
+    /* مؤشر التحميل */
+    .loading-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .loading-content {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    
     /* تحسينات للجوال */
     @media (max-width: 480px) {
       body {
@@ -846,7 +1039,7 @@
             <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
           </svg>
         </div>
-        <div class="header-title">دردشه جوال هوست | شات جوال هوست</div>
+        <div class="header-title">دردشة جوال هوست | شات جوال هوست</div>
         <div class="header-icon" onclick="location.reload()">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
             <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
@@ -870,20 +1063,20 @@
       <div class="login-forms">
         <!-- دخول الزوار -->
         <div class="login-form active" id="form1">
-          <input type="text" class="form-input" id="guestName" placeholder="أكتب الاسم المستعار">
+          <input type="text" class="form-input" id="guestName" placeholder="اكتب الاسم المستعار" maxlength="20">
           <button class="form-btn" onclick="login(1)">دخول</button>
         </div>
         
         <!-- دخول الأعضاء -->
         <div class="login-form" id="form2">
-          <input type="text" class="form-input" id="memberName" placeholder="اكتب اسم العضو">
+          <input type="text" class="form-input" id="memberName" placeholder="اكتب اسم العضو" maxlength="20">
           <input type="password" class="form-input" id="memberPassword" placeholder="اكتب كلمة المرور">
           <button class="form-btn" onclick="login(2)">دخول</button>
         </div>
         
         <!-- تسجيل عضوية -->
         <div class="login-form" id="form3">
-          <input type="text" class="form-input" id="newName" placeholder="اكتب اسم العضو">
+          <input type="text" class="form-input" id="newName" placeholder="اكتب اسم العضو" maxlength="20">
           <input type="password" class="form-input" id="newPassword" placeholder="اكتب كلمة المرور">
           <button class="form-btn" onclick="login(3)">تسجيل</button>
         </div>
@@ -912,7 +1105,10 @@
       <div class="microphones-panel">
         <div class="microphones-header">
           <div class="microphones-title">المايكروفونات النشطة</div>
-          <button class="mute-all-btn" onclick="toggleMuteAll()">كتم الكل</button>
+          <div>
+            <button class="mute-all-btn" onclick="toggleMuteAll()">كتم الكل</button>
+            <button class="mic-settings-btn" onclick="openMicrophoneSettings()">إعدادات</button>
+          </div>
         </div>
         <div class="microphones-grid" id="microphonesGrid">
           <!-- المايكروفونات ستضاف هنا ديناميكياً -->
@@ -939,7 +1135,7 @@
       
       <!-- منطقة الإدخال -->
       <div class="input-area">
-        <input type="text" class="message-input" id="messageInput" placeholder="اكتب رسالتك هنا...">
+        <input type="text" class="message-input" id="messageInput" placeholder="اكتب رسالتك هنا..." maxlength="1000">
         <button class="emoji-btn" onclick="toggleEmojiPanel()">😊</button>
         <button class="admin-btn" id="adminPanelBtn" onclick="openAdminPanel()">لوحة التحكم</button>
         <button class="logout-btn" onclick="logout()">خروج</button>
@@ -1033,6 +1229,13 @@
         </div>
       </div>
     </div>
+
+    <!-- مؤشر التحميل -->
+    <div class="loading-indicator" id="loadingIndicator">
+      <div class="loading-content" id="loadingContent">
+        جاري التحميل...
+      </div>
+    </div>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
@@ -1042,660 +1245,1190 @@
     let currentTab = 1;
     let userRole = 'user'; // user, admin, moderator
     let socket = null;
+    let sessionId = null;
     const adminUsers = ['admin', 'administrator', 'مشرف', 'ادمن', 'مدير'];
     const moderatorUsers = ['moderator', 'مشرف', 'مراقب', 'mod'];
     let currentProfileUser = null;
+    let reconnectAttempts = 0;
+    const maxReconnectAttempts = 5;
     
-    // بيانات المايكروفونات
+    // بيانات المايكروفونات المتطورة
     let microphones = [
-      { id: 1, user: null, active: false, muted: false, talking: false },
-      { id: 2, user: null, active: false, muted: false, talking: false },
-      { id: 3, user: null, active: false, muted: false, talking: false },
-      { id: 4, user: null, active: false, muted: false, talking: false },
-      { id: 5, user: null, active: false, muted: false, talking: false }
+        { 
+            id: 1, 
+            user: null, 
+            active: false, 
+            muted: false, 
+            talking: false,
+            volume: 100,
+            noiseCancel: true,
+            priority: false,
+            joinTime: null
+        },
+        { 
+            id: 2, 
+            user: null, 
+            active: false, 
+            muted: false, 
+            talking: false,
+            volume: 100,
+            noiseCancel: true,
+            priority: false,
+            joinTime: null
+        },
+        { 
+            id: 3, 
+            user: null, 
+            active: false, 
+            muted: false, 
+            talking: false,
+            volume: 100,
+            noiseCancel: true,
+            priority: false,
+            joinTime: null
+        },
+        { 
+            id: 4, 
+            user: null, 
+            active: false, 
+            muted: false, 
+            talking: false,
+            volume: 100,
+            noiseCancel: true,
+            priority: false,
+            joinTime: null
+        },
+        { 
+            id: 5, 
+            user: null, 
+            active: false, 
+            muted: false, 
+            talking: false,
+            volume: 100,
+            noiseCancel: true,
+            priority: false,
+            joinTime: null
+        }
     ];
-    
+
     let isMuteAll = false;
+    let autoLeaveMic = true;
 
     // بيانات الإيموجي
     const emojis = {
-      faces: ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕'],
-      hearts: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟'],
-      objects: ['⌚', '📱', '📲', '💻', '⌨️', '🖥️', '🖨️', '🖱️', '🖲️', '🕹️', '🗜️', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽️', '🎞️', '📞', '☎️', '📟', '📠', '📺', '📻', '🎙️', '🎚️', '🎛️', '🧭', '⏱️', '⏲️', '⏰', '🕰️', '⌛', '⏳', '📡', '🔋', '🔌', '💡', '🔦', '🕯️', '🪔', '🧯', '🛢️', '💸', '💵', '💴', '💶', '💷', '💰', '💳', '💎', '⚖️', '🧰', '🔧', '🔨', '⚒️', '🛠️', '⛏️', '🔩', '⚙️', '🧱', '⛓️', '🧲', '🔫', '💣', '🧨', '🪓', '🔪', '🗡️', '⚔️', '🛡️', '🚬', '⚰️', '⚱️', '🏺', '🔮', '📿', '🧿', '💈', '⚗️', '🔭', '🔬', '🕳️', '🩹', '🩺', '💊', '💉', '🩸', '🧬', '🦠', '🧫', '🧪', '🌡️', '🧹', '🧺', '🧻', '🚽', '🚰', '🚿', '🛁', '🛀', '🧼', '🪒', '🧽', '🧴', '🛎️', '🔑', '🗝️', '🚪', '🪑', '🛋️', '🛏️', '🛌', '🧸', '🖼️', '🛍️', '🛒', '🎁', '🎈', '🎏', '🎀', '🎊', '🎉', '🎎', '🏮', '🎐', '✉️', '📩', '📨', '📧', '💌', '📥', '📤', '📦', '🏷️', '📪', '📫', '📬', '📭', '📮', '📯', '📜', '📃', '📄', '📑', '🧾', '📊', '📈', '📉', '🗒️', '🗓️', '📆', '📅', '🗑️', '📇', '🗃️', '🗳️', '🗄️', '📋', '📁', '📂', '🗂️', '🗞️', '📰', '📓', '📔', '📒', '📕', '📗', '📘', '📙', '📚', '📖', '🔖', '🧷', '🔗', '📎', '🖇️', '📐', '📏', '🧮', '📌', '📍', '✂️', '🖊️', '🖋️', '✒️', '🖌️', '🖍️', '📝', '✏️', '🔍', '🔎', '🔏', '🔐', '🔒', '🔓'],
-      symbols: ['❤️', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '☮️', '✝️', '☪️', '🕉️', '☸️', '✡️', '🔯', '🕎', '☯️', '☦️', '🛐', '⛎', '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓', '🆔', '⚛️', '🉑', '☢️', '☣️', '📴', '📳', '🈶', '🈚', '🈸', '🈺', '🈷️', '✴️', '🆚', '💮', '🉐', '㊙️', '㊗️', '🈴', '🈵', '🈹', '🈲', '🅰️', '🅱️', '🆎', '🆑', '🅾️', '🆘', '❌', '⭕', '🛑', '⛔', '📛', '🚫', '💯', '💢', '♨️', '🚷', '🚯', '🚳', '🚱', '🔞', '📵', '🚭', '❗', '❕', '❓', '❔', '‼️', '⁉️', '🔅', '🔆', '〽️', '⚠️', '🚸', '🔱', '⚜️', '🔰', '♻️', '✅', '🈯', '💹', '❇️', '✳️', '❎', '🌐', '💠', 'Ⓜ️', '🌀', '💤', '🏧', '🚾', '♿', '🅿️', '🈳', '🈂️', '🛂', '🛃', '🛄', '🛅', '🚹', '🚺', '🚼', '🚻', '🚮', '🎦', '📶', '🈁', '🔣', 'ℹ️', '🔤', '🔡', '🔠', '🆖', '🆗', '🆙', '🆒', '🆕', '🆓', '0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '🔢', '#️⃣', '*️⃣', '⏏️', '▶️', '⏸️', '⏯️', '⏹️', '⏺️', '⏭️', '⏮️', '⏩', '⏪', '⏫', '⏬', '◀️', '🔼', '🔽', '➡️', '⬅️', '⬆️', '⬇️', '↗️', '↘️', '↙️', '↖️', '↕️', '↔️', '↪️', '↩️', '⤴️', '⤵️', '🔀', '🔁', '🔂', '🔄', '🔃', '🎵', '🎶', '➕', '➖', '➗', '✖️', '♾️', '💲', '💱', '™️', '©️', '®️', '〰️', '➰', '➿', '🔚', '🔙', '🔛', '🔝', '🔜', '✔️', '☑️', '🔘', '🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '⚫', '⚪', '🟤', '🔺', '🔻', '🔸', '🔹', '🔶', '🔷', '🔳', '🔲', '▪️', '▫️', '◾', '◽', '◼️', '◻️', '🟥', '🟧', '🟨', '🟩', '🟦', '🟪', '⬛', '⬜', '🟫', '🔈', '🔇', '🔉', '🔊', '🔔', '🔕', '📣', '📢', '👁️‍🗨️', '💬', '💭', '🗯️', '♠️', '♣️', '♥️', '♦️', '🃏', '🎴', '🀄', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚', '🕛', '🕜', '🕝', '🕞', '🕟', '🕠', '🕡', '🕢', '🕣', '🕤', '🕥', '🕦', '🕧']
+        faces: ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠'],
+        hearts: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝'],
+        objects: ['⌚', '📱', '📲', '💻', '⌨️', '🖥️', '🖨️', '🖱️', '🖲️', '🕹️', '🗜️', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽️', '🎞️', '📞', '☎️', '📟', '📠', '📺', '📻', '🎙️', '🎚️', '🎛️', '🧭', '⏱️', '⏲️', '⏰', '🕰️', '⌛', '⏳', '📡', '🔋', '🔌', '💡', '🔦', '🕯️', '🪔', '🧯', '🛢️', '💸', '💵', '💴', '💶', '💷', '💰', '💳', '💎', '⚖️', '🧰', '🔧', '🔨', '⚒️', '🛠️', '⛏️', '🔩', '⚙️', '🧱', '⛓️', '🧲', '🔫', '💣', '🧨', '🪓', '🔪', '🗡️', '⚔️', '🛡️', '🚬', '⚰️', '⚱️', '🏺', '🔮', '📿', '🧿', '💈', '⚗️', '🔭', '🔬', '🕳️', '🩹', '🩺', '💊', '💉', '🩸', '🧬', '🦠', '🧫', '🧪', '🌡️', '🧹', '🧺', '🧻', '🚽', '🚰', '🚿', '🛁', '🛀', '🧼', '🪒', '🧽', '🧴', '🛎️', '🔑', '🗝️', '🚪', '🪑', '🛋️', '🛏️', '🛌', '🧸', '🖼️', '🛍️', '🛒', '🎁', '🎈', '🎏', '🎀', '🎊', '🎉', '🎎', '🏮', '🎐', '✉️', '📩', '📨', '📧', '💌', '📥', '📤', '📦', '🏷️', '📪', '📫', '📬', '📭', '📮', '📯', '📜', '📃', '📄', '📑', '🧾', '📊', '📈', '📉', '🗒️', '🗓️', '📆', '📅', '🗑️', '📇', '🗃️', '🗳️', '🗄️', '📋', '📁', '📂', '🗂️', '🗞️', '📰', '📓', '📔', '📒', '📕', '📗', '📘', '📙', '📚', '📖', '🔖', '🧷', '🔗', '📎', '🖇️', '📐', '📏', '🧮', '📌', '📍', '✂️', '🖊️', '🖋️', '✒️', '🖌️', '🖍️', '📝', '✏️', '🔍', '🔎', '🔏', '🔐', '🔒', '🔓'],
+        symbols: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '☮️', '✝️', '☪️', '🕉️', '☸️', '✡️', '🔯', '🕎', '☯️', '☦️', '🛐', '⛎', '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓', '🆔', '⚛️', '🉑', '☢️', '☣️', '📴', '📳', '🈶', '🈚', '🈸', '🈺', '🈷️', '✴️', '🆚', '💮', '🉐', '㊙️', '㊗️', '🈴', '🈵', '🈹', '🈲', '🅰️', '🅱️', '🆎', '🆑', '🅾️', '🆘', '❌', '⭕', '🛑', '⛔', '📛', '🚫', '💯', '💢', '♨️', '🚷', '🚯', '🚳', '🚱', '🔞', '📵', '🚭', '❗', '❕', '❓', '❔', '‼️', '⁉️', '🔅', '🔆', '〽️', '⚠️', '🚸', '🔱', '⚜️', '🔰', '♻️', '✅', '🈯', '💹', '❇️', '✳️', '❎', '🌐', '💠', 'Ⓜ️', '🌀', '💤', '🏧', '🚾', '♿', '🅿️', '🈳', '🈂️', '🛂', '🛃', '🛄', '🛅', '🚹', '🚺', '🚼', '🚻', '🚮', '🎦', '📶', '🈁', '🔣', 'ℹ️', '🔤', '🔡', '🔠', '🆖', '🆗', '🆙', '🆒', '🆕', '🆓', '0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '🔢', '#️⃣', '*️⃣', '⏏️', '▶️', '⏸️', '⏯️', '⏹️', '⏺️', '⏭️', '⏮️', '⏩', '⏪', '⏫', '⏬', '◀️', '🔼', '🔽', '➡️', '⬅️', '⬆️', '⬇️', '↗️', '↘️', '↙️', '↖️', '↕️', '↔️', '↪️', '↩️', '⤴️', '⤵️', '🔀', '🔁', '🔂', '🔄', '🔃', '🎵', '🎶', '➕', '➖', '➗', '✖️', '♾️', '💲', '💱', '™️', '©️', '®️', '〰️', '➰', '➿', '🔚', '🔙', '🔛', '🔝', '🔜', '✔️', '☑️', '🔘', '🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '⚫', '⚪', '🟤', '🔺', '🔻', '🔸', '🔹', '🔶', '🔷', '🔳', '🔲', '▪️', '▫️', '◾', '◽', '◼️', '◻️', '🟥', '🟧', '🟨', '🟩', '🟦', '🟪', '⬛', '⬜', '🟫', '🔈', '🔇', '🔉', '🔊', '🔔', '🔕', '📣', '📢', '👁️‍🗨️', '💬', '💭', '🗯️', '♠️', '♣️', '♥️', '♦️', '🃏', '🎴', '🀄', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚', '🕛', '🕜', '🕝', '🕞', '🕟', '🕠', '🕡', '🕢', '🕣', '🕤', '🕥', '🕦', '🕧']
     };
 
     // تهيئة التطبيق
     document.addEventListener('DOMContentLoaded', function() {
-      // الاتصال بالخادم
-      socket = io();
-      
-      // تحديث حالة الاتصال
-      document.getElementById('loginStatus').textContent = 'متصل';
-      
-      // إعداد مستمعي الأحداث
-      setupSocketListeners();
-      
-      // إضافة حدث Enter لإرسال الرسالة
-      document.getElementById('messageInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          sendMessage();
-        }
-      });
-      
-      // تحميل المايكروفونات
-      renderMicrophones();
-      
-      // تحميل الإيموجي
-      loadEmojis('faces');
+        // الاتصال بالخادم
+        initializeSocket();
+        
+        // إعداد مستمع الأحداث
+        setupEventListeners();
+        
+        // تحميل المايكروفونات
+        renderMicrophones();
+        
+        // تحميل الإيموجي
+        loadEmojis('faces');
+        
+        // التحقق من الجلسة المحفوظة
+        checkSavedSession();
+        
+        // إعداد ترك التلقائي
+        setupAutoLeave();
     });
-    
-    // إعداد مستمعي أحداث السوكيت
+
+    // تهيئة السوكيت مع إعادة الاتصال
+    function initializeSocket() {
+        showLoading('جاري الاتصال بالخادم...');
+        
+        socket = io({
+            reconnection: true,
+            reconnectionAttempts: maxReconnectAttempts,
+            reconnectionDelay: 1000,
+            timeout: 20000
+        });
+
+        // إعداد مستمعي الأحداث
+        setupSocketListeners();
+    }
+
+    // إعداد مستمعي السوكيت
     function setupSocketListeners() {
-      // تحديث قائمة المستخدمين
-      socket.on('update-users', (users) => {
-        updateOnlineUsers(users);
-      });
-      
-      // تحديث عدد المستخدمين
-      socket.on('user-count', (count) => {
-        document.getElementById('onlineCount').textContent = `${count} متواجد`;
-      });
-      
-      // استقبال رسالة جديدة
-      socket.on('new-message', (messageData) => {
-        addMessageToChat(messageData);
-      });
-      
-      // استقبال البيانات الحالية
-      socket.on('current-data', (data) => {
-        updateOnlineUsers(data.users);
-        document.getElementById('onlineCount').textContent = `${data.users.length} متواجد`;
-        
-        // تحميل الرسائل السابقة
-        data.messages.forEach(message => {
-          addMessageToChat(message);
+        // أحداث الاتصال
+        socket.on('connect', () => {
+            console.log('متصل بالخادم');
+            hideLoading();
+            document.getElementById('loginStatus').textContent = 'متصل';
+            reconnectAttempts = 0;
+            
+            // محاولة استعادة الجلسة إذا كانت موجودة
+            if (sessionId) {
+                socket.emit('restore-session', { sessionId: sessionId });
+            }
         });
-      });
-      
-      // اسم المستخدم مستخدم بالفعل
-      socket.on('username-taken', (message) => {
-        alert(message);
-        document.getElementById('loginScreen').style.display = 'block';
-        document.getElementById('chatScreen').style.display = 'none';
-      });
-      
-      // تم طرد المستخدم
-      socket.on('kicked', (reason) => {
-        alert(`تم طردك من الدردشة: ${reason}`);
-        logout();
-      });
-      
-      // تم حذف رسالة
-      socket.on('message-deleted', (messageId) => {
-        const messageElement = document.querySelector(`[data-message-id="${messageId}"]`);
-        if (messageElement) {
-          messageElement.remove();
-        }
-      });
-      
-      // تم مسح المحادثة
-      socket.on('chat-cleared', (data) => {
-        document.getElementById('messagesContainer').innerHTML = '';
-        addSystemMessage(`تم مسح جميع الرسائل بواسطة ${data.by}`);
-      });
-      
-      // تم طرد مستخدم
-      socket.on('user-kicked', (data) => {
-        addSystemMessage(`تم طرد ${data.username} بواسطة ${data.by}: ${data.reason}`);
-      });
-    }
-    
-    // تبديل تبويبات الدخول
-    function switchTab(tabNumber) {
-      currentTab = tabNumber;
-      
-      // تحديث التبويبات النشطة
-      document.querySelectorAll('.tab').forEach((tab, index) => {
-        if (index + 1 === tabNumber) {
-          tab.classList.add('active');
-        } else {
-          tab.classList.remove('active');
-        }
-      });
-      
-      // تحديث النماذج النشطة
-      document.querySelectorAll('.login-form').forEach((form, index) => {
-        if (index + 1 === tabNumber) {
-          form.classList.add('active');
-        } else {
-          form.classList.remove('active');
-        }
-      });
-    }
-    
-    // تسجيل الدخول
-    function login(type) {
-      let username = '';
-      
-      if (type === 1) {
-        username = document.getElementById('guestName').value.trim();
-      } else if (type === 2) {
-        username = document.getElementById('memberName').value.trim();
-      } else if (type === 3) {
-        username = document.getElementById('newName').value.trim();
-      }
-      
-      if (!username) {
-        alert('يرجى إدخال اسم المستخدم');
-        return;
-      }
-      
-      currentUser = username;
-      setUserRole(username);
-      
-      // إرسال بيانات المستخدم للخادم
-      socket.emit('user-joined', {
-        username: username,
-        role: userRole
-      });
-      
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('chatScreen').style.display = 'flex';
-      document.getElementById('copyrightFooter').style.display = 'none';
-      toggleAdminButton();
-    }
-    
-    // تحديد صلاحية المستخدم
-    function setUserRole(username) {
-      const lowerUsername = username.toLowerCase();
-      
-      if (adminUsers.some(admin => lowerUsername.includes(admin.toLowerCase()))) {
-        userRole = 'admin';
-      } else if (moderatorUsers.some(mod => lowerUsername.includes(mod.toLowerCase()))) {
-        userRole = 'moderator';
-      } else {
-        userRole = 'user';
-      }
-    }
-    
-    // إظهار أو إخفاء زر لوحة التحكم
-    function toggleAdminButton() {
-      const adminBtn = document.getElementById('adminPanelBtn');
-      if (userRole === 'admin' || userRole === 'moderator') {
-        adminBtn.style.display = 'block';
-      } else {
-        adminBtn.style.display = 'none';
-      }
-    }
-    
-    // إرسال رسالة
-    function sendMessage() {
-      const messageInput = document.getElementById('messageInput');
-      const message = messageInput.value.trim();
-      
-      if (!message) {
-        alert('يرجى كتابة رسالة');
-        return;
-      }
-      
-      const messageData = {
-        username: currentUser,
-        message: message,
-        role: userRole
-      };
-      
-      // إرسال الرسالة للخادم
-      socket.emit('new-message', messageData);
-      
-      messageInput.value = '';
-      closeEmojiPanel();
-    }
-    
-    // إضافة رسالة للشات
-    function addMessageToChat(messageData) {
-      const messagesContainer = document.getElementById('messagesContainer');
-      
-      const isSystemMessage = messageData.type === 'system';
-      const isAdminMessage = messageData.role === 'admin' || messageData.role === 'moderator';
-      
-      if (isSystemMessage) {
-        // رسالة نظام
-        const systemMsg = document.createElement('div');
-        systemMsg.className = 'message system-message';
-        systemMsg.setAttribute('data-message-id', messageData.id);
-        systemMsg.innerHTML = `
-          <div class="message-content">
-            <div class="message-text">${messageData.message}</div>
-            <div class="message-time">${messageData.time}</div>
-          </div>
-        `;
-        messagesContainer.appendChild(systemMsg);
-      } else {
-        // رسالة مستخدم عادي
-        const senderClass = isAdminMessage ? 'admin-sender' : '';
-        const adminBadge = isAdminMessage ? '<div class="admin-badge">A</div>' : '';
-        const deleteButton = (userRole === 'admin' || userRole === 'moderator') ? 
-          '<button class="delete-message-btn" onclick="deleteMessage(' + messageData.id + ')">×</button>' : '';
-        
-        const userMessage = document.createElement('div');
-        userMessage.className = 'message';
-        userMessage.setAttribute('data-message-id', messageData.id);
-        userMessage.innerHTML = `
-          <div class="user-avatar" onclick="openProfile('${messageData.username}')" style="background-color: ${getRandomColor()}">
-            ${messageData.username.charAt(0)}
-            ${adminBadge}
-          </div>
-          <div class="message-content">
-            ${deleteButton}
-            <div class="message-header">
-              <div class="message-sender ${senderClass}" onclick="openProfile('${messageData.username}')">${messageData.username}</div>
-              <div class="message-time">${messageData.time}</div>
-            </div>
-            <div class="message-text">${messageData.message}</div>
-          </div>
-        `;
-        
-        messagesContainer.appendChild(userMessage);
-      }
-      
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-    
-    // إضافة رسالة نظام
-    function addSystemMessage(message) {
-      const messagesContainer = document.getElementById('messagesContainer');
-      
-      const systemMsg = document.createElement('div');
-      systemMsg.className = 'message system-message';
-      systemMsg.innerHTML = `
-        <div class="message-content">
-          <div class="message-text">${message}</div>
-          <div class="message-time">${new Date().toLocaleTimeString('ar-EG')}</div>
-        </div>
-      `;
-      
-      messagesContainer.appendChild(systemMsg);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-    
-    // حذف رسالة
-    function deleteMessage(messageId) {
-      if (userRole === 'admin' || userRole === 'moderator') {
-        socket.emit('delete-message', messageId);
-      } else {
-        alert('ليس لديك صلاحية حذف الرسائل');
-      }
-    }
-    
-    // تحديث قائمة المتواجدين
-    function updateOnlineUsers(users) {
-      const onlineUsersContainer = document.getElementById('onlineUsers');
-      
-      // مسح المحتوى الحالي
-      onlineUsersContainer.innerHTML = '';
-      
-      if (users.length === 0) {
-        const noUsersMsg = document.createElement('div');
-        noUsersMsg.className = 'no-users';
-        noUsersMsg.textContent = 'لا يوجد متواجدين حالياً';
-        onlineUsersContainer.appendChild(noUsersMsg);
-      } else {
-        users.forEach(user => {
-          const userItem = document.createElement('div');
-          userItem.className = 'user-item';
-          userItem.innerHTML = `
-            <div class="user-avatar" onclick="openProfile('${user.username}')" style="background-color: ${user.avatar}">
-              ${user.username.charAt(0)}
-            </div>
-            <span>${user.username}</span>
-            ${user.role !== 'user' ? '<span style="color: #dc3545; font-size: 12px;">(مشرف)</span>' : ''}
-          `;
-          onlineUsersContainer.appendChild(userItem);
+
+        socket.on('disconnect', (reason) => {
+            console.log('انقطع الاتصال:', reason);
+            document.getElementById('loginStatus').textContent = 'انقطع الاتصال';
+            
+            if (reason === 'io server disconnect') {
+                // الخادم قطع الاتصال، نحتاج لإعادة الاتصال يدوياً
+                socket.connect();
+            }
         });
-      }
+
+        socket.on('reconnect', (attemptNumber) => {
+            console.log('أعيد الاتصال بعد', attemptNumber, 'محاولات');
+            document.getElementById('loginStatus').textContent = 'متصل';
+            
+            // إعادة إرسال بيانات المستخدم بعد إعادة الاتصال
+            if (currentUser) {
+                socket.emit('user-joined', {
+                    username: currentUser,
+                    role: userRole
+                });
+            }
+        });
+
+        socket.on('reconnect_attempt', (attemptNumber) => {
+            console.log('محاولة إعادة الاتصال:', attemptNumber);
+            document.getElementById('loginStatus').textContent = `إعادة الاتصال... (${attemptNumber}/${maxReconnectAttempts})`;
+            reconnectAttempts = attemptNumber;
+        });
+
+        socket.on('reconnect_error', (error) => {
+            console.error('خطأ في إعادة الاتصال:', error);
+            document.getElementById('loginStatus').textContent = 'خطأ في الاتصال';
+        });
+
+        socket.on('connect_error', (error) => {
+            console.error('خطأ في الاتصال:', error);
+            hideLoading();
+            document.getElementById('loginStatus').textContent = 'فشل الاتصال';
+            alert('تعذر الاتصال بالخادم. يرجى المحاولة لاحقاً.');
+        });
+
+        // أحداث التطبيق
+        socket.on('update-users', (users) => {
+            updateOnlineUsers(users);
+        });
+        
+        socket.on('user-count', (count) => {
+            document.getElementById('onlineCount').textContent = `${count} متواجد`;
+        });
+        
+        socket.on('new-message', (messageData) => {
+            addMessageToChat(messageData);
+        });
+        
+        socket.on('current-data', (data) => {
+            updateOnlineUsers(data.users);
+            document.getElementById('onlineCount').textContent = `${data.users.length} متواجد`;
+            
+            // تحميل الرسائل السابقة
+            data.messages.forEach(message => {
+                addMessageToChat(message);
+            });
+            
+            // حفظ معرف الجلسة
+            if (data.sessionId) {
+                sessionId = data.sessionId;
+                localStorage.setItem('chatSession', JSON.stringify({
+                    username: currentUser,
+                    sessionId: sessionId,
+                    timestamp: Date.now()
+                }));
+            }
+        });
+        
+        socket.on('username-taken', (message) => {
+            alert(message);
+            document.getElementById('loginScreen').style.display = 'block';
+            document.getElementById('chatScreen').style.display = 'none';
+        });
+        
+        socket.on('kicked', (reason) => {
+            alert(`تم طردك من الدردشة: ${reason}`);
+            logout();
+        });
+        
+        socket.on('message-deleted', (messageId) => {
+            const messageElement = document.querySelector(`[data-message-id="${messageId}"]`);
+            if (messageElement) {
+                messageElement.remove();
+            }
+        });
+        
+        socket.on('chat-cleared', (data) => {
+            document.getElementById('messagesContainer').innerHTML = '';
+            addSystemMessage(`تم مسح جميع الرسائل بواسطة ${data.by}`);
+        });
+        
+        socket.on('user-kicked', (data) => {
+            addSystemMessage(`تم طرد ${data.username} بواسطة ${data.by}: ${data.reason}`);
+        });
+
+        socket.on('session-restored', (data) => {
+            console.log('تم استعادة الجلسة:', data.user.username);
+            currentUser = data.user.username;
+            userRole = data.user.role;
+            
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'flex';
+            document.getElementById('copyrightFooter').style.display = 'none';
+            toggleAdminButton();
+            
+            // تحديث البيانات
+            updateOnlineUsers(data.users);
+            document.getElementById('messagesContainer').innerHTML = '';
+            data.messages.forEach(message => {
+                addMessageToChat(message);
+            });
+        });
+
+        socket.on('error', (error) => {
+            console.error('خطأ من الخادم:', error);
+            alert(`خطأ: ${error}`);
+        });
     }
-    
-    // ===== نظام الإيموجي =====
-    
-    // تحميل الإيموجي
-    function loadEmojis(category) {
-      const emojiGrid = document.getElementById('emojiGrid');
-      emojiGrid.innerHTML = '';
-      
-      // تحديث التبويبات النشطة
-      document.querySelectorAll('.emoji-category').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
-      
-      // إضافة الإيموجي
-      emojis[category].forEach(emoji => {
-        const emojiElement = document.createElement('div');
-        emojiElement.className = 'emoji';
-        emojiElement.textContent = emoji;
-        emojiElement.onclick = () => insertEmoji(emoji);
-        emojiGrid.appendChild(emojiElement);
-      });
+
+    // إعداد مستمعي الأحداث
+    function setupEventListeners() {
+        // حدث Enter لإرسال الرسالة
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // إغلاق لوحة الإيموجي عند النقر خارجها
+        document.addEventListener('click', function(e) {
+            const emojiPanel = document.getElementById('emojiPanel');
+            const emojiBtn = document.querySelector('.emoji-btn');
+            
+            if (emojiPanel.style.display === 'block' && 
+                !emojiPanel.contains(e.target) && 
+                !emojiBtn.contains(e.target)) {
+                closeEmojiPanel();
+            }
+        });
+
+        // منع إدخال أحرف خطيرة في اسم المستخدم
+        const usernameInputs = ['guestName', 'memberName', 'newName'];
+        usernameInputs.forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[<>{}[\]\\]/g, '');
+                });
+            }
+        });
     }
-    
-    // تبديل فئة الإيموجي
-    function switchEmojiCategory(category) {
-      loadEmojis(category);
+
+    // التحقق من الجلسة المحفوظة
+    function checkSavedSession() {
+        try {
+            const savedSession = localStorage.getItem('chatSession');
+            if (savedSession) {
+                const session = JSON.parse(savedSession);
+                const sessionAge = Date.now() - session.timestamp;
+                
+                // الجلسة صالحة لمدة 24 ساعة
+                if (sessionAge < 24 * 60 * 60 * 1000) {
+                    sessionId = session.sessionId;
+                    // يمكن تفعيل الاستعادة التلقائية هنا إذا أردت
+                } else {
+                    localStorage.removeItem('chatSession');
+                }
+            }
+        } catch (error) {
+            console.error('خطأ في تحميل الجلسة:', error);
+            localStorage.removeItem('chatSession');
+        }
     }
-    
-    // إدراج الإيموجي في الرسالة
-    function insertEmoji(emoji) {
-      const messageInput = document.getElementById('messageInput');
-      messageInput.value += emoji;
-      messageInput.focus();
-    }
-    
-    // فتح/إغلاق لوحة الإيموجي
-    function toggleEmojiPanel() {
-      const emojiPanel = document.getElementById('emojiPanel');
-      if (emojiPanel.style.display === 'block') {
-        closeEmojiPanel();
-      } else {
-        emojiPanel.style.display = 'block';
-      }
-    }
-    
-    function closeEmojiPanel() {
-      document.getElementById('emojiPanel').style.display = 'none';
-    }
-    
-    // ===== نظام المايكروفونات =====
-    
+
+    // ===== نظام المايكروفونات المتطور =====
+
     // عرض المايكروفونات
     function renderMicrophones() {
-      const grid = document.getElementById('microphonesGrid');
-      grid.innerHTML = '';
-      
-      microphones.forEach(mic => {
-        const micElement = document.createElement('div');
-        micElement.className = `microphone-slot ${mic.active ? 'active' : ''} ${mic.muted ? 'muted' : ''}`;
-        micElement.innerHTML = `
-          <div class="microphone-user">${mic.user || 'فارغ'}</div>
-          <div class="microphone-controls">
-            ${mic.user ? `
-              <button class="mic-btn mic-toggle" onclick="toggleMicrophone(${mic.id})">
-                ${mic.active ? '🔊' : '🔈'}
-              </button>
-              <button class="mic-btn mic-mute" onclick="toggleMuteMicrophone(${mic.id})">
-                ${mic.muted ? '🔇' : '🔊'}
-              </button>
-              ${userRole === 'admin' || userRole === 'moderator' ? `
-                <button class="mic-btn mic-kick" onclick="kickFromMicrophone(${mic.id})">🚫</button>
-              ` : ''}
-            ` : `
-              <button class="mic-btn mic-toggle" onclick="takeMicrophone(${mic.id})">🎤</button>
-            `}
-          </div>
-          <div class="mic-status ${mic.talking ? 'mic-talking' : ''}">
-            ${mic.talking ? 'يتحدث...' : (mic.muted ? 'مكتوم' : (mic.active ? 'نشط' : 'غير نشط'))}
-          </div>
-        `;
-        grid.appendChild(micElement);
-      });
+        const grid = document.getElementById('microphonesGrid');
+        grid.innerHTML = '';
+        
+        microphones.forEach(mic => {
+            const isCurrentUser = mic.user === currentUser;
+            const canControl = isCurrentUser || userRole === 'admin' || userRole === 'moderator';
+            const timeOnMic = mic.joinTime ? Math.floor((Date.now() - mic.joinTime) / 60000) : 0;
+            
+            const micElement = document.createElement('div');
+            micElement.className = `microphone-slot ${mic.active ? 'active' : ''} ${mic.muted ? 'muted' : ''} ${mic.priority ? 'priority' : ''}`;
+            micElement.innerHTML = `
+                <div class="microphone-header">
+                    <div class="mic-number">مايك ${mic.id}</div>
+                    ${mic.priority ? '<div class="priority-badge">أولوية</div>' : ''}
+                </div>
+                <div class="microphone-user">${mic.user || 'شاغر'}</div>
+                ${mic.user ? `<div class="mic-time">${timeOnMic} دقيقة</div>` : ''}
+                
+                <div class="microphone-controls">
+                    ${mic.user ? `
+                        ${canControl ? `
+                            <button class="mic-btn mic-toggle ${mic.active ? 'active' : ''}" onclick="toggleMicrophone(${mic.id})" title="${mic.active ? 'إيقاف' : 'تشغيل'}">
+                                ${mic.active ? '🔴' : '🟢'}
+                            </button>
+                            <button class="mic-btn mic-mute ${mic.muted ? 'muted' : ''}" onclick="toggleMuteMicrophone(${mic.id})" title="${mic.muted ? 'إلغاء كتم' : 'كتم'}">
+                                ${mic.muted ? '🔇' : '🎤'}
+                            </button>
+                        ` : ''}
+                        
+                        ${isCurrentUser ? `
+                            <button class="mic-btn mic-leave" onclick="leaveMicrophone(${mic.id})" title="ترك المايك">
+                                👋
+                            </button>
+                        ` : ''}
+                        
+                        ${(userRole === 'admin' || userRole === 'moderator') ? `
+                            <button class="mic-btn mic-kick" onclick="kickFromMicrophone(${mic.id})" title="طرد من المايك">
+                                🚫
+                            </button>
+                            <button class="mic-btn mic-priority" onclick="toggleMicrophonePriority(${mic.id})" title="${mic.priority ? 'إلغاء الأولوية' : 'منح الأولوية'}">
+                                ${mic.priority ? '⭐' : '☆'}
+                            </button>
+                        ` : ''}
+                    ` : `
+                        <button class="mic-btn mic-join" onclick="takeMicrophone(${mic.id})" title="انضم إلى المايك">
+                            🎤
+                        </button>
+                    `}
+                </div>
+                
+                ${mic.user && canControl ? `
+                    <div class="mic-advanced-controls">
+                        <div class="volume-control">
+                            <label>الصوت:</label>
+                            <input type="range" min="0" max="100" value="${mic.volume}" 
+                                   onchange="changeMicrophoneVolume(${mic.id}, this.value)" 
+                                   ${!isCurrentUser ? 'disabled' : ''}>
+                            <span>${mic.volume}%</span>
+                        </div>
+                        <div class="mic-settings">
+                            <button class="setting-btn ${mic.noiseCancel ? 'active' : ''}" 
+                                    onclick="toggleNoiseCancel(${mic.id})"
+                                    ${!isCurrentUser ? 'disabled' : ''}>
+                                إزالة ضوضاء: ${mic.noiseCancel ? '✅' : '❌'}
+                            </button>
+                        </div>
+                    </div>
+                ` : ''}
+                
+                <div class="mic-status ${mic.talking ? 'mic-talking' : ''}">
+                    ${mic.talking ? '🎙️ يتحدث...' : 
+                      mic.muted ? '🔇 مكتوم' : 
+                      mic.active ? '🟢 نشط' : '⚫ غير نشط'}
+                </div>
+            `;
+            grid.appendChild(micElement);
+        });
     }
-    
+
     // احتلال مايكروفون
     function takeMicrophone(micId) {
-      const mic = microphones.find(m => m.id === micId);
-      if (mic && !mic.user) {
-        mic.user = currentUser;
-        mic.active = true;
-        renderMicrophones();
-      }
+        if (!currentUser) {
+            alert('يجب تسجيل الدخول أولاً');
+            return;
+        }
+        
+        // التحقق من صحة المدخلات
+        if (!validateInput(currentUser)) {
+            alert('اسم المستخدم غير صالح');
+            return;
+        }
+        
+        // التحقق إذا كان المستخدم لديه مايكروفون بالفعل
+        const userHasMic = microphones.find(m => m.user === currentUser);
+        if (userHasMic && !confirm('لديك مايكروفون بالفعل. هل تريد الانتقال إلى مايكروفون جديد؟')) {
+            return;
+        }
+        
+        const mic = microphones.find(m => m.id === micId);
+        if (mic && !mic.user) {
+            // تحرير المايكروفون القديم إذا كان موجوداً
+            if (userHasMic) {
+                leaveMicrophone(userHasMic.id);
+            }
+            
+            mic.user = currentUser;
+            mic.active = true;
+            mic.joinTime = Date.now();
+            renderMicrophones();
+            
+            addSystemMessage(`${currentUser} انضم إلى المايكروفون ${micId}`);
+            
+            // إرسال إشعار للخادم
+            if (socket) {
+                socket.emit('mic-joined', {
+                    username: currentUser,
+                    micId: micId
+                });
+            }
+        } else if (mic && mic.user) {
+            alert('هذا المايكروفون محجوز بالفعل');
+        }
     }
-    
+
+    // ترك المايكروفون
+    function leaveMicrophone(micId) {
+        const mic = microphones.find(m => m.id === micId);
+        if (mic && mic.user === currentUser) {
+            const timeSpent = Math.floor((Date.now() - mic.joinTime) / 60000);
+            
+            mic.user = null;
+            mic.active = false;
+            mic.muted = false;
+            mic.talking = false;
+            mic.volume = 100;
+            mic.priority = false;
+            mic.joinTime = null;
+            
+            renderMicrophones();
+            addSystemMessage(`${currentUser} ترك المايكروفون بعد ${timeSpent} دقيقة`);
+            
+            // إرسال إشعار للخادم
+            if (socket) {
+                socket.emit('mic-left', {
+                    username: currentUser,
+                    micId: micId,
+                    timeSpent: timeSpent
+                });
+            }
+        }
+    }
+
     // تبديل حالة المايكروفون
     function toggleMicrophone(micId) {
-      const mic = microphones.find(m => m.id === micId);
-      if (mic && mic.user === currentUser) {
-        mic.active = !mic.active;
-        if (mic.active) {
-          mic.talking = true;
-          // محاكاة التحدث
-          setTimeout(() => {
-            mic.talking = false;
+        const mic = microphones.find(m => m.id === micId);
+        if (mic && (mic.user === currentUser || userRole === 'admin' || userRole === 'moderator')) {
+            mic.active = !mic.active;
+            
+            if (mic.active) {
+                // محاكاة التحدث
+                mic.talking = true;
+                setTimeout(() => {
+                    mic.talking = false;
+                    renderMicrophones();
+                }, 2000 + Math.random() * 3000);
+            } else {
+                mic.talking = false;
+            }
+            
             renderMicrophones();
-          }, 3000);
         }
-        renderMicrophones();
-      }
     }
-    
+
     // كتم/إلغاء كتم المايكروفون
     function toggleMuteMicrophone(micId) {
-      const mic = microphones.find(m => m.id === micId);
-      if (mic && (mic.user === currentUser || userRole === 'admin' || userRole === 'moderator')) {
-        mic.muted = !mic.muted;
-        renderMicrophones();
-      }
-    }
-    
-    // طرد مستخدم من المايكروفون (للمشرفين فقط)
-    function kickFromMicrophone(micId) {
-      if (userRole === 'admin' || userRole === 'moderator') {
         const mic = microphones.find(m => m.id === micId);
-        if (mic && mic.user) {
-          const kickedUser = mic.user;
-          mic.user = null;
-          mic.active = false;
-          mic.muted = false;
-          mic.talking = false;
-          renderMicrophones();
-          addSystemMessage(`تم طرد ${kickedUser} من المايكروفون`);
+        if (mic && (mic.user === currentUser || userRole === 'admin' || userRole === 'moderator')) {
+            mic.muted = !mic.muted;
+            renderMicrophones();
+            
+            if (mic.muted) {
+                addSystemMessage(`تم كتم ${mic.user}`);
+            } else {
+                addSystemMessage(`تم إلغاء كتم ${mic.user}`);
+            }
         }
-      }
     }
-    
+
+    // تغيير مستوى الصوت
+    function changeMicrophoneVolume(micId, volume) {
+        const mic = microphones.find(m => m.id === micId);
+        if (mic && mic.user === currentUser) {
+            mic.volume = parseInt(volume);
+            renderMicrophones();
+        }
+    }
+
+    // تبديل إزالة الضوضاء
+    function toggleNoiseCancel(micId) {
+        const mic = microphones.find(m => m.id === micId);
+        if (mic && mic.user === currentUser) {
+            mic.noiseCancel = !mic.noiseCancel;
+            renderMicrophones();
+            
+            addSystemMessage(`إزالة الضوضاء ${mic.noiseCancel ? 'مفعلة' : 'معطلة'} لـ ${currentUser}`);
+        }
+    }
+
+    // تبديل الأولوية
+    function toggleMicrophonePriority(micId) {
+        if (userRole === 'admin' || userRole === 'moderator') {
+            const mic = microphones.find(m => m.id === micId);
+            if (mic && mic.user) {
+                mic.priority = !mic.priority;
+                renderMicrophones();
+                
+                addSystemMessage(`تم ${mic.priority ? 'منح' : 'إلغاء'} الأولوية لـ ${mic.user}`);
+            }
+        }
+    }
+
+    // طرد مستخدم من المايكروفون
+    function kickFromMicrophone(micId) {
+        if (userRole === 'admin' || userRole === 'moderator') {
+            const mic = microphones.find(m => m.id === micId);
+            if (mic && mic.user) {
+                const kickedUser = mic.user;
+                const timeSpent = Math.floor((Date.now() - mic.joinTime) / 60000);
+                
+                mic.user = null;
+                mic.active = false;
+                mic.muted = false;
+                mic.talking = false;
+                mic.priority = false;
+                mic.joinTime = null;
+                
+                renderMicrophones();
+                addSystemMessage(`تم طرد ${kickedUser} من المايكروفون بعد ${timeSpent} دقيقة`);
+                
+                // إرسال إشعار للخادم
+                if (socket) {
+                    socket.emit('mic-kicked', {
+                        username: kickedUser,
+                        micId: micId,
+                        by: currentUser,
+                        timeSpent: timeSpent
+                    });
+                }
+            }
+        }
+    }
+
     // كتم/إلغاء كتم جميع المايكروفونات
     function toggleMuteAll() {
-      isMuteAll = !isMuteAll;
-      microphones.forEach(mic => {
-        if (mic.user) {
-          mic.muted = isMuteAll;
-        }
-      });
-      renderMicrophones();
-    }
-    
-    // ===== نظام البروفايل =====
-    
-    // فتح بروفايل المستخدم
-    function openProfile(username) {
-      currentProfileUser = username;
-      const profilePanel = document.getElementById('profilePanel');
-      const profileName = document.getElementById('profileName');
-      const profileRole = document.getElementById('profileRole');
-      const profileAvatar = document.getElementById('profileAvatar');
-      const adminSection = document.getElementById('adminProfileSection');
-      
-      // تعيين بيانات البروفايل
-      profileName.textContent = username;
-      
-      // تحديد دور المستخدم
-      let roleText = 'مستخدم عادي';
-      let roleColor = '#2F5C73';
-      
-      if (adminUsers.some(admin => username.toLowerCase().includes(admin.toLowerCase()))) {
-        roleText = 'مدير النظام';
-        roleColor = '#dc3545';
-      } else if (moderatorUsers.some(mod => username.toLowerCase().includes(mod.toLowerCase()))) {
-        roleText = 'مشرف';
-        roleColor = '#28a745';
-      }
-      
-      profileRole.textContent = roleText;
-      profileRole.style.color = roleColor;
-      
-      // تعيين الصورة الرمزية
-      profileAvatar.textContent = username.charAt(0);
-      profileAvatar.style.backgroundColor = getRandomColor();
-      
-      // إظهار/إخفاء أدوات المشرف
-      if (userRole === 'admin' || userRole === 'moderator') {
-        adminSection.style.display = 'block';
-      } else {
-        adminSection.style.display = 'none';
-      }
-      
-      profilePanel.style.display = 'block';
-    }
-    
-    // إغلاق البروفايل
-    function closeProfile() {
-      document.getElementById('profilePanel').style.display = 'none';
-      currentProfileUser = null;
-    }
-    
-    // ===== أدوات المشرف في البروفايل =====
-    
-    // طرد المستخدم (للمشرفين)
-    function adminKickUser() {
-      if (confirm(`هل تريد طرد ${currentProfileUser}؟`)) {
-        socket.emit('kick-user', {
-          username: currentProfileUser,
-          by: currentUser,
-          reason: 'بأمر المشرف'
+        isMuteAll = !isMuteAll;
+        microphones.forEach(mic => {
+            if (mic.user) {
+                mic.muted = isMuteAll;
+            }
         });
-        closeProfile();
-      }
+        renderMicrophones();
+        
+        addSystemMessage(`تم ${isMuteAll ? 'كتم' : 'إلغاء كتم'} جميع المايكروفونات`);
     }
-    
-    // حظر المستخدم (للمشرفين)
-    function adminBanUser() {
-      if (confirm(`هل تريد حظر ${currentProfileUser} بشكل دائم؟`)) {
-        addSystemMessage(`تم حظر ${currentProfileUser} بشكل دائم`);
-        closeProfile();
-      }
+
+    // إعدادات المايكروفونات
+    function openMicrophoneSettings() {
+        const settingsHtml = `
+            <div class="settings-panel">
+                <h3>إعدادات المايكروفونات</h3>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" ${autoLeaveMic ? 'checked' : ''} onchange="autoLeaveMic = this.checked">
+                        ترك المايكروفونات تلقائياً عند الخروج
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>الحد الأقصى للوقت على المايك (دقائق):</label>
+                    <input type="number" id="maxMicTime" value="30" min="5" max="180">
+                </div>
+                <div class="setting-item">
+                    <button class="profile-btn" onclick="applyMicrophoneSettings()">تطبيق الإعدادات</button>
+                    <button class="profile-btn" onclick="closeModal()" style="background: #6c757d;">إلغاء</button>
+                </div>
+            </div>
+        `;
+        
+        showModal('إعدادات المايكروفونات', settingsHtml);
     }
-    
-    // ===== أدوات المشرف في لوحة التحكم =====
-    
-    function resetAllMicrophones() {
-      microphones.forEach(mic => {
-        mic.user = null;
-        mic.active = false;
-        mic.muted = false;
-        mic.talking = false;
-      });
-      renderMicrophones();
+
+    function applyMicrophoneSettings() {
+        const maxTime = document.getElementById('maxMicTime').value;
+        alert(`تم حفظ الإعدادات:\n- ترك تلقائي: ${autoLeaveMic ? 'نعم' : 'لا'}\n- الحد الأقصى: ${maxTime} دقيقة`);
+        closeModal();
     }
-    
-    function clearChat() {
-      if (confirm('هل أنت متأكد من رغبتك في مسح جميع الرسائل؟')) {
-        socket.emit('clear-chat', { by: currentUser });
-      }
-    }
-    
-    function kickUser() {
-      const username = prompt('أدخل اسم المستخدم الذي تريد طرده:');
-      if (username) {
-        socket.emit('kick-user', {
-          username: username,
-          by: currentUser,
-          reason: 'بأمر المشرف'
+
+    // ترك جميع المايكروفونات تلقائياً عند الخروج
+    function setupAutoLeave() {
+        window.addEventListener('beforeunload', () => {
+            if (autoLeaveMic) {
+                microphones.forEach(mic => {
+                    if (mic.user === currentUser) {
+                        leaveMicrophone(mic.id);
+                    }
+                });
+            }
         });
-      }
     }
-    
-    // ===== دوال مساعدة =====
-    
+
+    // ===== دوال المساعدة =====
+
+    // تحقق من صحة المدخلات
+    function validateInput(input) {
+        if (!input || typeof input !== 'string') return false;
+        
+        const trimmed = input.trim();
+        if (trimmed.length < 2 || trimmed.length > 20) return false;
+        
+        // منع أحرف خاصة خطيرة
+        const dangerousChars = /[<>{}[\]\\]/;
+        return !dangerousChars.test(trimmed);
+    }
+
     // توليد لون عشوائي
     function getRandomColor() {
-      const colors = ['#2F5C73', '#28a745', '#dc3545', '#ffc107', '#6f42c1', '#e83e8c', '#fd7e14'];
-      return colors[Math.floor(Math.random() * colors.length)];
+        const colors = ['#2F5C73', '#28a745', '#dc3545', '#ffc107', '#6f42c1', '#e83e8c', '#fd7e14'];
+        return colors[Math.floor(Math.random() * colors.length)];
     }
-    
-    // ===== باقي الدوال =====
-    
+
+    // عرض مؤشر التحميل
+    function showLoading(message) {
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const loadingContent = document.getElementById('loadingContent');
+        
+        loadingContent.textContent = message;
+        loadingIndicator.style.display = 'flex';
+    }
+
+    function hideLoading() {
+        document.getElementById('loadingIndicator').style.display = 'none';
+    }
+
+    // عرض المودال
+    function showModal(title, content) {
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>${title}</h3>
+                    <button class="close-modal" onclick="closeModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    ${content}
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    function closeModal() {
+        const modal = document.querySelector('.modal-overlay');
+        if (modal) modal.remove();
+    }
+
+    // ===== دوال الواجهة الرئيسية =====
+
+    // تبديل تبويبات الدخول
+    function switchTab(tabNumber) {
+        currentTab = tabNumber;
+        
+        // تحديث التبويبات النشطة
+        document.querySelectorAll('.tab').forEach((tab, index) => {
+            if (index + 1 === tabNumber) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+        
+        // تحديث النماذج النشطة
+        document.querySelectorAll('.login-form').forEach((form, index) => {
+            if (index + 1 === tabNumber) {
+                form.classList.add('active');
+            } else {
+                form.classList.remove('active');
+            }
+        });
+    }
+
+    // تسجيل الدخول
+    function login(type) {
+        let username = '';
+        
+        if (type === 1) {
+            username = document.getElementById('guestName').value.trim();
+        } else if (type === 2) {
+            username = document.getElementById('memberName').value.trim();
+        } else if (type === 3) {
+            username = document.getElementById('newName').value.trim();
+        }
+        
+        // تحقق من صحة البيانات
+        if (!username) {
+            alert('يرجى إدخال اسم المستخدم');
+            return;
+        }
+        
+        if (!validateInput(username)) {
+            alert('اسم المستخدم غير صالح. يجب أن يكون بين 2-20 حرفاً بدون رموز خطيرة');
+            return;
+        }
+        
+        currentUser = username;
+        setUserRole(username);
+        
+        showLoading('جاري الدخول...');
+        
+        // إرسال بيانات المستخدم للخادم
+        socket.emit('user-joined', {
+            username: username,
+            role: userRole
+        });
+        
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('chatScreen').style.display = 'flex';
+        document.getElementById('copyrightFooter').style.display = 'none';
+        toggleAdminButton();
+        
+        hideLoading();
+    }
+
+    // تحديد صلاحية المستخدم
+    function setUserRole(username) {
+        const lowerUsername = username.toLowerCase();
+        
+        if (adminUsers.some(admin => lowerUsername.includes(admin.toLowerCase()))) {
+            userRole = 'admin';
+        } else if (moderatorUsers.some(mod => lowerUsername.includes(mod.toLowerCase()))) {
+            userRole = 'moderator';
+        } else {
+            userRole = 'user';
+        }
+    }
+
+    // إظهار/إخفاء زر لوحة التحكم
+    function toggleAdminButton() {
+        const adminBtn = document.getElementById('adminPanelBtn');
+        if (userRole === 'admin' || userRole === 'moderator') {
+            adminBtn.style.display = 'block';
+        } else {
+            adminBtn.style.display = 'none';
+        }
+    }
+
+    // إرسال رسالة
+    function sendMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value.trim();
+        
+        if (!message) {
+            alert('يرجى كتابة رسالة');
+            return;
+        }
+        
+        // تحقق من صحة الرسالة
+        if (!validateMessage(message)) {
+            alert('الرسالة تحتوي على محتوى غير مسموح');
+            return;
+        }
+        
+        const messageData = {
+            username: currentUser,
+            message: message,
+            role: userRole
+        };
+        
+        // إرسال الرسالة للخادم
+        socket.emit('new-message', messageData);
+        
+        messageInput.value = '';
+        closeEmojiPanel();
+    }
+
+    // تحقق من صحة الرسالة
+    function validateMessage(message) {
+        if (!message || typeof message !== 'string') return false;
+        
+        const trimmed = message.trim();
+        if (trimmed.length === 0) return false;
+        if (trimmed.length > 1000) return false;
+        
+        // منع محتوى ضار
+        const harmfulPatterns = [
+            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+            /javascript:/gi,
+            /on\w+\s*=/gi
+        ];
+        
+        return !harmfulPatterns.some(pattern => pattern.test(trimmed));
+    }
+
+    // إضافة رسالة للشات
+    function addMessageToChat(messageData) {
+        const messagesContainer = document.getElementById('messagesContainer');
+        
+        const isSystemMessage = messageData.type === 'system';
+        const isAdminMessage = messageData.role === 'admin' || messageData.role === 'moderator';
+        
+        if (isSystemMessage) {
+            // رسالة نظام
+            const systemMsg = document.createElement('div');
+            systemMsg.className = 'message system-message';
+            systemMsg.setAttribute('data-message-id', messageData.id);
+            systemMsg.innerHTML = `
+                <div class="message-content">
+                    <div class="message-text">${messageData.message}</div>
+                    <div class="message-time">${messageData.time}</div>
+                </div>
+            `;
+            messagesContainer.appendChild(systemMsg);
+        } else {
+            // رسالة مستخدم عادي
+            const senderClass = isAdminMessage ? 'admin-sender' : '';
+            const adminBadge = isAdminMessage ? '<div class="admin-badge">A</div>' : '';
+            const deleteButton = (userRole === 'admin' || userRole === 'moderator') ? 
+                '<button class="delete-message-btn" onclick="deleteMessage(' + messageData.id + ')">×</button>' : '';
+            
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message';
+            userMessage.setAttribute('data-message-id', messageData.id);
+            userMessage.innerHTML = `
+                <div class="user-avatar" onclick="openProfile('${messageData.username}')" style="background-color: ${getRandomColor()}">
+                    ${messageData.username.charAt(0)}
+                    ${adminBadge}
+                </div>
+                <div class="message-content">
+                    ${deleteButton}
+                    <div class="message-header">
+                        <div class="message-sender ${senderClass}" onclick="openProfile('${messageData.username}')">${messageData.username}</div>
+                        <div class="message-time">${messageData.time}</div>
+                    </div>
+                    <div class="message-text">${messageData.message}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(userMessage);
+        }
+        
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // إضافة رسالة نظام
+    function addSystemMessage(message) {
+        const messagesContainer = document.getElementById('messagesContainer');
+        
+        const systemMsg = document.createElement('div');
+        systemMsg.className = 'message system-message';
+        systemMsg.innerHTML = `
+            <div class="message-content">
+                <div class="message-text">${message}</div>
+                <div class="message-time">${new Date().toLocaleTimeString('ar-EG')}</div>
+            </div>
+        `;
+        
+        messagesContainer.appendChild(systemMsg);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // حذف رسالة
+    function deleteMessage(messageId) {
+        if (userRole === 'admin' || userRole === 'moderator') {
+            socket.emit('delete-message', messageId);
+        } else {
+            alert('ليس لديك صلاحية حذف الرسائل');
+        }
+    }
+
+    // تحديث قائمة المتواجدين
+    function updateOnlineUsers(users) {
+        const onlineUsersContainer = document.getElementById('onlineUsers');
+        
+        // مسح المحتوى الحالي
+        onlineUsersContainer.innerHTML = '';
+        
+        if (users.length === 0) {
+            const noUsersMsg = document.createElement('div');
+            noUsersMsg.className = 'no-users';
+            noUsersMsg.textContent = 'لا يوجد متواجدين حالياً';
+            onlineUsersContainer.appendChild(noUsersMsg);
+        } else {
+            users.forEach(user => {
+                const userItem = document.createElement('div');
+                userItem.className = 'user-item';
+                userItem.innerHTML = `
+                    <div class="user-avatar" onclick="openProfile('${user.username}')" style="background-color: ${user.avatar || getRandomColor()}">
+                        ${user.username.charAt(0)}
+                    </div>
+                    <span>${user.username}</span>
+                    ${user.role !== 'user' ? '<span style="color: #dc3545; font-size: 12px;">(مشرف)</span>' : ''}
+                `;
+                onlineUsersContainer.appendChild(userItem);
+            });
+        }
+    }
+
+    // ===== نظام الإيموجي =====
+
+    // تحميل الإيموجي
+    function loadEmojis(category) {
+        const emojiGrid = document.getElementById('emojiGrid');
+        emojiGrid.innerHTML = '';
+        
+        // تحديث التبويبات النشطة
+        document.querySelectorAll('.emoji-category').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // إضافة الإيموجي
+        emojis[category].forEach(emoji => {
+            const emojiElement = document.createElement('div');
+            emojiElement.className = 'emoji';
+            emojiElement.textContent = emoji;
+            emojiElement.onclick = () => insertEmoji(emoji);
+            emojiGrid.appendChild(emojiElement);
+        });
+    }
+
+    // تبديل فئة الإيموجي
+    function switchEmojiCategory(category) {
+        loadEmojis(category);
+    }
+
+    // إدراج الإيموجي في الرسالة
+    function insertEmoji(emoji) {
+        const messageInput = document.getElementById('messageInput');
+        messageInput.value += emoji;
+        messageInput.focus();
+    }
+
+    // فتح/إغلاق لوحة الإيموجي
+    function toggleEmojiPanel() {
+        const emojiPanel = document.getElementById('emojiPanel');
+        if (emojiPanel.style.display === 'block') {
+            closeEmojiPanel();
+        } else {
+            emojiPanel.style.display = 'block';
+        }
+    }
+
+    function closeEmojiPanel() {
+        document.getElementById('emojiPanel').style.display = 'none';
+    }
+
+    // ===== نظام البروفايل =====
+
+    // فتح بروفايل المستخدم
+    function openProfile(username) {
+        currentProfileUser = username;
+        const profilePanel = document.getElementById('profilePanel');
+        const profileName = document.getElementById('profileName');
+        const profileRole = document.getElementById('profileRole');
+        const profileAvatar = document.getElementById('profileAvatar');
+        const adminSection = document.getElementById('adminProfileSection');
+        
+        // تعيين بيانات البروفايل
+        profileName.textContent = username;
+        
+        // تحديد دور المستخدم
+        let roleText = 'مستخدم عادي';
+        let roleColor = '#2F5C73';
+        
+        if (adminUsers.some(admin => username.toLowerCase().includes(admin.toLowerCase()))) {
+            roleText = 'مدير النظام';
+            roleColor = '#dc3545';
+        } else if (moderatorUsers.some(mod => username.toLowerCase().includes(mod.toLowerCase()))) {
+            roleText = 'مشرف';
+            roleColor = '#28a745';
+        }
+        
+        profileRole.textContent = roleText;
+        profileRole.style.color = roleColor;
+        
+        // تعيين الصورة الرمزية
+        profileAvatar.textContent = username.charAt(0);
+        profileAvatar.style.backgroundColor = getRandomColor();
+        
+        // إظهار/إخفاء أدوات المشرف
+        if (userRole === 'admin' || userRole === 'moderator') {
+            adminSection.style.display = 'block';
+        } else {
+            adminSection.style.display = 'none';
+        }
+        
+        profilePanel.style.display = 'block';
+    }
+
+    // إغلاق البروفايل
+    function closeProfile() {
+        document.getElementById('profilePanel').style.display = 'none';
+        currentProfileUser = null;
+    }
+
+    // ===== أدوات المشرف في البروفايل =====
+
+    // طرد المستخدم (للمشرفين)
+    function adminKickUser() {
+        if (confirm(`هل تريد طرد ${currentProfileUser}؟`)) {
+            socket.emit('kick-user', {
+                username: currentProfileUser,
+                by: currentUser,
+                reason: 'بأمر المشرف'
+            });
+            closeProfile();
+        }
+    }
+
+    // حظر المستخدم (للمشرفين)
+    function adminBanUser() {
+        if (confirm(`هل تريد حظر ${currentProfileUser} بشكل دائم؟`)) {
+            addSystemMessage(`تم حظر ${currentProfileUser} بشكل دائم`);
+            closeProfile();
+        }
+    }
+
+    // ===== أدوات المشرف في لوحة التحكم =====
+
+    function resetAllMicrophones() {
+        microphones.forEach(mic => {
+            mic.user = null;
+            mic.active = false;
+            mic.muted = false;
+            mic.talking = false;
+            mic.priority = false;
+            mic.joinTime = null;
+        });
+        renderMicrophones();
+    }
+
+    function clearChat() {
+        if (confirm('هل أنت متأكد من رغبتك في مسح جميع الرسائل؟')) {
+            socket.emit('clear-chat', { by: currentUser });
+        }
+    }
+
+    function kickUser() {
+        const username = prompt('أدخل اسم المستخدم الذي تريد طرده:');
+        if (username) {
+            socket.emit('kick-user', {
+                username: username,
+                by: currentUser,
+                reason: 'بأمر المشرف'
+            });
+        }
+    }
+
+    function banUser() {
+        const username = prompt('أدخل اسم المستخدم الذي تريد حظره:');
+        if (username) {
+            addSystemMessage(`تم حظر ${username} بشكل دائم`);
+        }
+    }
+
+    function muteUser() {
+        const username = prompt('أدخل اسم المستخدم الذي تريد كتمه:');
+        if (username) {
+            addSystemMessage(`تم كتم ${username}`);
+        }
+    }
+
+    // ===== دوال إضافية للوحة التحكم =====
+
+    function shuffleMicrophones() {
+        alert('سيتم تطوير هذه الوظيفة في المستقبل');
+    }
+
+    function kickAllFromMicrophones() {
+        microphones.forEach(mic => {
+            if (mic.user) {
+                mic.user = null;
+                mic.active = false;
+                mic.muted = false;
+                mic.talking = false;
+                mic.priority = false;
+                mic.joinTime = null;
+            }
+        });
+        renderMicrophones();
+        addSystemMessage('تم طرد جميع المستخدمين من المايكروفونات');
+    }
+
+    function addCustomEmoji() {
+        const emoji = prompt('أدخل الإيموجي المخصص:');
+        if (emoji) {
+            emojis.faces.unshift(emoji);
+            loadEmojis('faces');
+        }
+    }
+
+    function manageEmojiCategories() {
+        alert('إدارة فئات الإيموجي:\n\n- يمكنك إضافة فئات جديدة\n- حذف فئات موجودة\n- تعديل الإيموجي في كل فئة');
+    }
+
+    function resetEmojiSettings() {
+        if (confirm('هل تريد إعادة تعيين إعدادات الإيموجي؟')) {
+            location.reload();
+        }
+    }
+
+    // فتح لوحة التحكم
+    function openAdminPanel() {
+        if (userRole !== 'admin' && userRole !== 'moderator') {
+            alert('ليس لديك صلاحية الوصول إلى لوحة التحكم');
+            return;
+        }
+        document.getElementById('adminPanel').style.display = 'block';
+    }
+
+    function closeAdminPanel() {
+        document.getElementById('adminPanel').style.display = 'none';
+    }
+
+    // ===== دوال إضافية =====
+
+    function adminMuteUser() {
+        alert('سيتم تطوير هذه الوظيفة');
+    }
+
+    function adminViewIP() {
+        alert('سيتم تطوير هذه الوظيفة');
+    }
+
+    function adminPromoteUser() {
+        alert('سيتم تطوير هذه الوظيفة');
+    }
+
+    function adminRemoveAvatar() {
+        alert('سيتم تطوير هذه الوظيفة');
+    }
+
+    function sendPrivateMessage() {
+        alert('سيتم تطوير هذه الوظيفة');
+    }
+
+    function viewProfileHistory() {
+        alert('سيتم تطوير هذه الوظيفة');
+    }
+
+    function changeAvatar() {
+        alert('سيتم تطوير هذه الوظيفة');
+    }
+
     // تسجيل الخروج
     function logout() {
-      // تحرير المايكروفونات التي يشغلها المستخدم
-      microphones.forEach(mic => {
-        if (mic.user === currentUser) {
-          mic.user = null;
-          mic.active = false;
-          mic.muted = false;
-          mic.talking = false;
+        // تحرير المايكروفونات التي يشغلها المستخدم
+        microphones.forEach(mic => {
+            if (mic.user === currentUser) {
+                leaveMicrophone(mic.id);
+            }
+        });
+        
+        // قطع الاتصال بالسوكيت
+        if (socket) {
+            socket.disconnect();
         }
-      });
-      
-      // قطع الاتصال بالسوكيت
-      if (socket) {
-        socket.disconnect();
-      }
-      
-      // إعادة التحميل للعودة للاتصال الجديد
-      location.reload();
-    }
-    
-    // لوحة التحكم
-    function openAdminPanel() {
-      if (userRole !== 'admin' && userRole !== 'moderator') {
-        alert('ليس لديك صلاحية الوصول إلى لوحة التحكم');
-        return;
-      }
-      document.getElementById('adminPanel').style.display = 'block';
-    }
-    
-    function closeAdminPanel() {
-      document.getElementById('adminPanel').style.display = 'none';
-    }
-    
-    // دوال أخرى للوحة التحكم (يمكن تطويرها لاحقاً)
-    function banUser() {
-      const username = prompt('أدخل اسم المستخدم الذي تريد حظره:');
-      if (username) {
-        addSystemMessage(`تم حظر ${username} بشكل دائم`);
-      }
-    }
-    
-    function muteUser() {
-      const username = prompt('أدخل اسم المستخدم الذي تريد كتمه:');
-      if (username) {
-        addSystemMessage(`تم كتم ${username}`);
-      }
-    }
-    
-    function shuffleMicrophones() {
-      // يمكن تطوير هذه الوظيفة لاحقاً
-      alert('سيتم تطوير هذه الوظيفة في المستقبل');
-    }
-    
-    function kickAllFromMicrophones() {
-      microphones.forEach(mic => {
-        if (mic.user) {
-          mic.user = null;
-          mic.active = false;
-          mic.muted = false;
-          mic.talking = false;
-        }
-      });
-      renderMicrophones();
-      addSystemMessage('تم طرد جميع المستخدمين من المايكروفونات');
-    }
-    
-    function addCustomEmoji() {
-      const emoji = prompt('أدخل الإيموجي المخصص:');
-      if (emoji) {
-        emojis.faces.unshift(emoji);
-        loadEmojis('faces');
-      }
-    }
-    
-    function manageEmojiCategories() {
-      alert('إدارة فئات الإيموجي:\n\n- يمكنك إضافة فئات جديدة\n- حذف فئات موجودة\n- تعديل الإيموجي في كل فئة');
-    }
-    
-    function resetEmojiSettings() {
-      if (confirm('هل تريد إعادة تعيين إعدادات الإيموجي؟')) {
+        
+        // مسح الجلسة المحفوظة
+        localStorage.removeItem('chatSession');
+        
+        // إعادة تحميل الصفحة
         location.reload();
-      }
     }
   </script>
 </body>
