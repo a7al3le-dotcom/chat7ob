@@ -1,91 +1,233 @@
-<!-- الملف: index.html (الجزء 1 من 2) -->
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دردشة الزوار الصوتية</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سينما — ستايل Discord</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    font-family: 'Segoe UI', sans-serif;
+    background: #2f3136;
+    color: #fff;
+}
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+.layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
 
-  <!-- Emoji Button -->
-  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.4/dist/index.min.js"></script>
+/* ====== الشريط الجانبي ====== */
+.sidebar {
+    width: 220px;
+    background: #202225;
+    padding: 15px;
+    overflow-y: auto;
+    border-left: 2px solid #18191c;
+    transition: transform 0.3s ease;
+}
 
-  <style>
-    body { font-family: sans-serif; background: #f2f2f2; margin: 0; padding: 15px; }
-    h2 { text-align: center; color: #333; margin-bottom: 10px; }
-    #login { text-align: center; margin-top: 30vh; }
-    #chat-container { display: none; }
-    #chat-box {
-      background: #fff; border: 1px solid #ccc; border-radius: 8px;
-      padding: 10px; height: 40vh; overflow-y: auto; margin-bottom: 10px;
+.sidebar h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #b9bbbe;
+}
+
+.channel {
+    padding: 10px;
+    margin-bottom: 8px;
+    background: #2f3136;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.channel:hover { background: #36393f; }
+.channel.active { background: #5865f2; }
+
+/* زر toggle للجوال */
+.toggle-btn {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #5865f2;
+    color: #fff;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #36393f;
+}
+
+video {
+    width: 100%;
+    max-height: 40vh;
+    background: black;
+}
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 20px;
+}
+
+.msg {
+    width: 100%;
+    padding: 6px 0;
+    border-bottom: 1px solid #202225;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.msg .text-container {
+    display: flex;
+    gap: 6px;
+    overflow: hidden;
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.msg .name {
+    font-weight: bold;
+    color: #4aa8ff;
+    text-shadow: 1px 1px 2px #00000088;
+    font-size: 14px;
+}
+
+.msg .text {
+    color: #ffffff;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.msg .meta {
+    white-space: nowrap;
+    display: flex;
+    gap: 8px;
+}
+
+.msg .time {
+    color: #bbbbbb;
+    font-size: 12px;
+}
+
+.input-area {
+    display: flex;
+    background: #40444b;
+    padding: 10px;
+    border-top: 2px solid #202225;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #303339;
+    color: white;
+    font-size: 14px;
+}
+
+button {
+    margin-right: 8px;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 5px;
+    background: #5865f2;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+button:hover { background: #4752c4; }
+
+/* ======= Responsive ======= */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
     }
-    .message {
-      background: #e9f5ff; border-radius: 6px; padding: 10px;
-      margin-bottom: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.05);
+
+    .sidebar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        transform: translateX(100%);
+        z-index: 9;
     }
-    .username { font-weight: bold; font-size: 16px; color: #005a9c; margin-bottom: 5px; }
-    .text { font-size: 14px; color: #000; margin-bottom: 5px; word-wrap: break-word; }
-    .timestamp { font-size: 12px; color: #777; text-align: left; }
-    #input-area { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    input[type="text"] {
-      flex: 1; padding: 10px; font-size: 14px;
-      border: 1px solid #ccc; border-radius: 6px; width: 100%;
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .toggle-btn {
+        display: block;
+    }
+
+    video {
+        max-height: 30vh;
+    }
+
+    .msg .name {
+        font-size: 13px;
+    }
+    .msg .text {
+        font-size: 13px;
+    }
+    .msg .time {
+        font-size: 11px;
+    }
+    .input-area input {
+        font-size: 13px;
     }
     button {
-      padding: 10px 16px; font-size: 14px; background: #0078d4;
-      color: white; border: none; border-radius: 6px; cursor: pointer;
+        font-size: 13px;
+        padding: 10px 12px;
     }
-    button:hover { background: #005a9c; }
-    #emoji-button {
-      background: #fff; border: 1px solid #ccc; border-radius: 6px;
-      font-size: 20px; cursor: pointer; padding: 5px 10px;
-    }
-    #voice-controls {
-      display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
-    }
-    select, .voice-btn {
-      padding: 8px; font-size: 14px; border-radius: 6px;
-      border: 1px solid #ccc; cursor: pointer;
-    }
-    .voice-btn { background: #eee; }
-    .voice-btn.active { background: #0078d4; color: white; }
-    audio { display: block; margin-top: 10px; width: 100%; }
-  </style>
+}
+</style>
 </head>
 <body>
 
-  <div id="login">
-    <h2>👋 مرحبًا بك في الدردشة</h2>
-    <p>ادخل اسمك للبدء:</p>
-    <input type="text" id="username-input" placeholder="اسم المستخدم" />
-    <br /><br />
-    <button onclick="startChat()">دخول</button>
-  </div>
+<button class="toggle-btn" onclick="toggleSidebar()">☰ القنوات</button>
 
-  <div id="chat-container">
-    <h2>💬 دردشة الزوار</h2>
-    <div id="chat-box"></div>
-    <div id="input-area">
-      <button id="emoji-button">😊</button>
-      <input type="text" id="message-input" placeholder="اكتب رسالتك هنا..." />
-      <button onclick="sendMessage()">إرسال</button>
+<div class="layout">
+
+    <div class="sidebar" id="sidebar">
+        <div class="channel active" data-room="room1">🎬 قناة السينما</div>
+        <div class="channel" data-room="room2">💬 دردشة 2</div>
+        <div class="channel" data-room="room3">🔥 دردشة 3</div>
     </div>
 
-    <div id="voice-controls">
-      <select id="mic-select"></select>
-      <button class="voice-btn" onclick="toggleMic()">🎙️ تشغيل/كتم</button>
-      <button class="voice-btn" onclick="muteAll()">🔇 كتم الجميع</button>
-      <button class="voice-btn" onclick="raiseHand()">✋ رفع اليد</button>
+    <div class="content">
+        <video controls src="movie.mp4"></video>
+        <div class="chat-box" id="chatBox"></div>
+        <div class="input-area">
+            <input id="msgInput" type="text" placeholder="اكتب رسالة...">
+            <button onclick="sendMsg()">إرسال</button>
+        </div>
     </div>
 
-    <audio id="remote-audio" autoplay></audio>
-  </div>
-  <script>
-    // إعدادات Firebase (استبدلها بقيم مشروعك)
-    const firebaseConfig = {
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
       apiKey: "AIzaSyDAxLtHcIDePIeT--h9bS-yTz7OYPxzTik",
       authDomain: "my-chat-app-1d0e8.firebaseapp.com",
       databaseURL: "https://my-chat-app-1d0e8-default-rtdb.firebaseio.com",
@@ -95,147 +237,96 @@
       appId: "602134283299:web:2756df0a8d8beaaaea9d96"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-    let username = '';
-    let localStream;
-    let micEnabled = true;
-    let peerConnection;
-    const chatBox = document.getElementById('chat-box');
-    const input = document.getElementById('message-input');
-    const emojiBtn = document.getElementById('emoji-button');
-    const micSelect = document.getElementById('mic-select');
-    const remoteAudio = document.getElementById('remote-audio');
+// ===== اسم المستخدم =====
+let username = "";
+function askName() {
+    username = prompt("أدخل اسمك:");
+    if (!username || username.trim() === "") askName();
+}
+askName();
 
-    function startChat() {
-      const inputName = document.getElementById('username-input');
-      if (inputName.value.trim()) {
-        username = inputName.value.trim();
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('chat-container').style.display = 'block';
-        listenForMessages();
-        loadMicDevices();
-        startVoice();
-      }
-    }
+// ===== أرقام عربية ووقت عربي =====
+function toArabicNums(str) {
+    return str.replace(/[0-9]/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+}
+function formatArabicTime() {
+    const date = new Date();
+    let h = date.getHours();
+    let m = date.getMinutes();
+    let period = h >= 12 ? "م" : "ص";
+    h = h % 12;
+    h = h || 12;
+    m = m < 10 ? "0" + m : m;
+    return toArabicNums(`${h}:${m} ${period}`);
+}
 
-    function sendMessage() {
-      const text = input.value.trim();
-      if (text) {
-        const now = new Date();
-        const msg = {
-          user: username,
-          text: text,
-          time: now.toLocaleString('ar-EG')
-        };
-        db.ref('messages').push(msg);
-        input.value = '';
-      }
-    }
+let currentRoom = "room1";
+const chatBox = document.getElementById("chatBox");
+const sidebar = document.getElementById("sidebar");
 
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') sendMessage();
+document.querySelectorAll(".channel").forEach(ch => {
+    ch.addEventListener("click", () => {
+        document.querySelectorAll(".channel").forEach(c => c.classList.remove("active"));
+        ch.classList.add("active");
+        currentRoom = ch.getAttribute("data-room");
+        loadMessages();
+
+        // إخفاء الشريط الجانبي على الجوال
+        if(window.innerWidth <= 768) {
+            sidebar.classList.remove("show");
+        }
     });
+});
 
-    function listenForMessages() {
-      db.ref('messages').on('child_added', snapshot => {
-        const msg = snapshot.val();
-        const div = document.createElement('div');
-        div.className = 'message';
-        div.innerHTML = `<div class="username">${msg.user}</div>
-                         <div class="text">${msg.text}</div>
-                         <div class="timestamp">${msg.time}</div>`;
-        chatBox.appendChild(div);
+// ===== إرسال الرسالة =====
+function sendMsg() {
+    const msg = document.getElementById("msgInput").value.trim();
+    if (!msg) return;
+    db.ref("discord_style/" + currentRoom).push({
+        name: username,
+        text: msg,
+        time: formatArabicTime()
+    });
+    document.getElementById("msgInput").value = "";
+}
+
+// ===== تحميل الرسائل =====
+function loadMessages() {
+    chatBox.innerHTML = "";
+    db.ref("discord_style/" + currentRoom).off();
+    db.ref("discord_style/" + currentRoom).on("child_added", snap => {
+        const data = snap.val();
+        const bubble = document.createElement("div");
+        bubble.className = "msg";
+        bubble.innerHTML = `
+            <div class="text-container">
+                <span class="name">${data.name}</span>
+                <span class="text">${data.text}</span>
+            </div>
+            <div class="meta">
+                <span class="time">${data.time}</span>
+            </div>
+        `;
+        chatBox.appendChild(bubble);
         chatBox.scrollTop = chatBox.scrollHeight;
-      });
-    }
-
-    const picker = new EmojiButton({ position: 'top-end', theme: 'auto' });
-    emojiBtn.addEventListener('click', () => picker.togglePicker(emojiBtn));
-    picker.on('emoji', emoji => { input.value += emoji; input.focus(); });
-
-    async function loadMicDevices() {
-      const devices = await navigator.mediaDevices.enumerateDevices();
-      const mics = devices.filter(d => d.kind === 'audioinput');
-      micSelect.innerHTML = '';
-      mics.forEach(mic => {
-        const option = document.createElement('option');
-        option.value = mic.deviceId;
-        option.textContent = mic.label || `مايك ${micSelect.length + 1}`;
-        micSelect.appendChild(option);
-      });
-    }
-
-    async function startVoice() {
-      const selectedMic = micSelect.value;
-      localStream = await navigator.mediaDevices.getUserMedia({
-        audio: { deviceId: selectedMic ? { exact: selectedMic } : undefined }
-      });
-
-      peerConnection = new RTCPeerConnection({
-        iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
-      });
-
-      localStream.getTracks().forEach(track => {
-        peerConnection.addTrack(track, localStream);
-      });
-
-      peerConnection.ontrack = event => {
-        remoteAudio.srcObject = event.streams[0];
-      };
-
-      peerConnection.onicecandidate = event => {
-        if (event.candidate) {
-          db.ref('signals/' + username).push({ candidate: event.candidate });
-        }
-      };
-
-      const offer = await peerConnection.createOffer();
-      await peerConnection.setLocalDescription(offer);
-      db.ref('signals/' + username).push({ offer: offer });
-    }
-
-    db.ref('signals').on('child_added', async snapshot => {
-      const data = snapshot.val();
-      if (data.answer && peerConnection.signalingState !== 'stable') {
-        await peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
-      }
-      if (data.candidate) {
-        try {
-          await peerConnection.addIceCandidate(new RTCIceCandidate(data.candidate));
-        } catch (e) {
-          console.error('خطأ في ICE:', e);
-        }
-      }
     });
+}
 
-    function toggleMic() {
-      micEnabled = !micEnabled;
-      if (localStream) {
-        localStream.getAudioTracks().forEach(track => track.enabled = micEnabled);
-      }
-    }
+// ===== زر toggle للشريط الجانبي =====
+function toggleSidebar() {
+    sidebar.classList.toggle("show");
+}
 
-    function muteAll() {
-      db.ref('control').set({ muteAll: true });
-    }
+// ===== إرسال بالإنتر =====
+document.getElementById("msgInput").addEventListener("keydown", function(e){
+    if(e.key === "Enter") sendMsg();
+});
 
-    function raiseHand() {
-      db.ref('messages').push({
-        user: username,
-        text: '✋ رفع اليد',
-        time: new Date().toLocaleString('ar-EG')
-      });
-    }
-
-    db.ref('control').on('value', snapshot => {
-      const control = snapshot.val();
-      if (control && control.muteAll && localStream) {
-        localStream.getAudioTracks().forEach(track => track.enabled = false);
-      }
-    });
-  </script>
+loadMessages();
+</script>
 
 </body>
 </html>
