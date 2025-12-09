@@ -32,10 +32,11 @@ body {
 
 .sidebar h3 {
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     color: #b9bbbe;
 }
 
+/* القنوات */
 .channel {
     padding: 10px;
     margin-bottom: 8px;
@@ -62,6 +63,40 @@ body {
     z-index: 10;
 }
 
+/* ===== قسم المتصلون والأدوات ===== */
+.section {
+    margin-top: 15px;
+}
+.section h4 {
+    font-size: 14px;
+    color: #b9bbbe;
+    margin-bottom: 6px;
+}
+.user {
+    padding: 6px 8px;
+    background: #2f3136;
+    border-radius: 5px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: #4aa8ff;
+    text-shadow: 1px 1px 2px #00000088;
+}
+
+.sidebar button.tool-btn {
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background: #5865f2;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+.sidebar button.tool-btn:hover { background: #4752c4; }
+
+/* ===== المحتوى ===== */
 .content {
     flex: 1;
     display: flex;
@@ -198,6 +233,9 @@ button:hover { background: #4752c4; }
         font-size: 13px;
         padding: 10px 12px;
     }
+    .sidebar button.tool-btn {
+        font-size: 12px;
+    }
 }
 </style>
 </head>
@@ -211,6 +249,19 @@ button:hover { background: #4752c4; }
         <div class="channel active" data-room="room1">🎬 قناة السينما</div>
         <div class="channel" data-room="room2">💬 دردشة 2</div>
         <div class="channel" data-room="room3">🔥 دردشة 3</div>
+
+        <!-- قسم المتصلون -->
+        <div class="section">
+            <h4>المتصلون</h4>
+            <div id="usersList"></div>
+        </div>
+
+        <!-- أدوات الموقع -->
+        <div class="section">
+            <h4>أدوات</h4>
+            <button class="tool-btn" onclick="alert('إرسال فيديو للبث');">🎥 إرسال فيديو للبث</button>
+            <button class="tool-btn" onclick="alert('أداة إضافية');">⚙ أداة إضافية</button>
+        </div>
     </div>
 
     <div class="content">
@@ -236,7 +287,6 @@ const firebaseConfig = {
       messagingSenderId: "602134283299",
       appId: "602134283299:web:2756df0a8d8beaaaea9d96"
     };
-
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
@@ -263,10 +313,13 @@ function formatArabicTime() {
     return toArabicNums(`${h}:${m} ${period}`);
 }
 
+// ===== المتغيرات =====
 let currentRoom = "room1";
 const chatBox = document.getElementById("chatBox");
 const sidebar = document.getElementById("sidebar");
+const usersList = document.getElementById("usersList");
 
+// ===== القنوات =====
 document.querySelectorAll(".channel").forEach(ch => {
     ch.addEventListener("click", () => {
         document.querySelectorAll(".channel").forEach(c => c.classList.remove("active"));
@@ -274,10 +327,7 @@ document.querySelectorAll(".channel").forEach(ch => {
         currentRoom = ch.getAttribute("data-room");
         loadMessages();
 
-        // إخفاء الشريط الجانبي على الجوال
-        if(window.innerWidth <= 768) {
-            sidebar.classList.remove("show");
-        }
+        if(window.innerWidth <= 768) sidebar.classList.remove("show");
     });
 });
 
@@ -315,6 +365,12 @@ function loadMessages() {
     });
 }
 
+// ===== إدارة المستخدمين المتصلين =====
+function updateUsers() {
+    // مثال: المستخدم الحالي فقط (يمكنك توسيعها لاحقًا)
+    usersList.innerHTML = `<div class="user">${username}</div>`;
+}
+
 // ===== زر toggle للشريط الجانبي =====
 function toggleSidebar() {
     sidebar.classList.toggle("show");
@@ -325,7 +381,9 @@ document.getElementById("msgInput").addEventListener("keydown", function(e){
     if(e.key === "Enter") sendMsg();
 });
 
+// ===== تحميل أول قناة =====
 loadMessages();
+updateUsers();
 </script>
 
 </body>
